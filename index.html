@@ -1,0 +1,888 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2025 年度尾牙暨年終教育訓練</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #0060a9;
+            --secondary-color: #00a0e9;
+            --accent-color: #ffbd2e;
+            --bg-color: #f4f7fa;
+            --card-bg: #ffffff;
+            --text-color: #2c3e50;
+            --timeline-color: #cbd5e0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft JhengHei", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        /* --- Hero 區域 --- */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: white;
+            padding: 40px 15px 70px;
+            text-align: center;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            position: relative;
+            box-shadow: 0 4px 20px rgba(0, 96, 169, 0.3);
+        }
+
+        .logo-glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 16px;
+            padding: 15px 25px;
+            margin: 0 auto 25px auto;
+            max-width: 90%;
+            width: fit-content;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+        }
+
+        .logo-img {
+            height: 60px;
+            width: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .hero h1 { 
+            margin: 0; 
+            font-weight: 800; 
+            letter-spacing: 1px;
+            white-space: nowrap; 
+            font-size: 5.5vw; 
+            text-shadow: 0 2px 4px rgba(0,0,0,0.15);
+        }
+        @media (min-width: 768px) {
+            .hero h1 { font-size: 2.5em; }
+            .logo-img { height: 75px; }
+        }
+        
+        .hero p { 
+            font-size: 1.1em; 
+            opacity: 0.95; 
+            margin-top: 10px; 
+            font-weight: 500;
+        }
+
+        /* 倒數計時器 (翻頁效果) */
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .time-box {
+            background: linear-gradient(to bottom, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0.1) 50%);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 8px;
+            padding: 8px 12px;
+            min-width: 60px;
+            text-align: center;
+            color: white;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            perspective: 1000px;
+        }
+        .time-box::after {
+            content: '';
+            position: absolute;
+            top: 50%; left: 0; right: 0;
+            height: 1px;
+            background: rgba(255,255,255,0.2);
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+        }
+        .time-number {
+            display: inline-block;
+            font-size: 1.5em;
+            font-weight: 800;
+            line-height: 1.1;
+            text-shadow: 0 2px 2px rgba(0,0,0,0.1);
+            transform-style: preserve-3d;
+        }
+        .flip {
+            animation: flip-effect 0.6s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+        }
+        @keyframes flip-effect {
+            0% { transform: rotateX(0); }
+            100% { transform: rotateX(-360deg); }
+        }
+        .time-label {
+            font-size: 0.75em;
+            opacity: 0.9;
+            text-transform: uppercase;
+            margin-top: 2px;
+            display: block;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: -40px auto 40px;
+            padding: 0 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* --- 分頁按鈕 (Sticky) - 極致滑順優化版 --- */
+        .tabs-wrapper {
+            width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch; 
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: var(--bg-color);
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .tabs-wrapper::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tabs {
+            display: inline-flex;
+            gap: 10px;
+            padding: 0 20px;
+            min-width: 100%;
+            box-sizing: border-box;
+            justify-content: flex-start;
+        }
+
+        @media (min-width: 768px) {
+            .tabs {
+                display: flex;
+                width: 100%;
+                justify-content: center;
+                padding: 0;
+            }
+        }
+        
+        .tab-btn {
+            background: white;
+            border: 1px solid #eee;
+            padding: 12px 25px; 
+            font-size: 1em;
+            font-weight: bold;
+            color: #888;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            flex-shrink: 0; 
+        }
+        .tab-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+            box-shadow: 0 4px 10px rgba(0, 96, 169, 0.3);
+        }
+
+        /* --- 垂直時間軸樣式 --- */
+        .content-section { display: none; animation: fadeIn 0.5s ease; }
+        .content-section.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .timeline { position: relative; padding-left: 20px; }
+        .timeline::before {
+            content: '';
+            position: absolute; left: 20px; top: 10px; bottom: 10px;
+            width: 2px; background: var(--timeline-color);
+        }
+        .timeline-item { position: relative; margin-bottom: 30px; padding-left: 25px; }
+        .timeline-icon {
+            position: absolute; left: -20px; top: 0;
+            width: 40px; height: 40px;
+            background: white;
+            border: 2px solid var(--primary-color);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary-color); font-size: 1.1em;
+            z-index: 2; box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .timeline-content {
+            background: white; border-radius: 16px; padding: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .time-tag {
+            display: inline-block; background: #f0f2f5; color: #555;
+            padding: 4px 10px; border-radius: 20px;
+            font-size: 0.9em; font-weight: bold; margin-bottom: 10px;
+        }
+        .event-title { margin: 0 0 8px 0; font-size: 1.3em; color: #333; }
+        
+        .location-row { margin-bottom: 10px; }
+        .location-link {
+            display: inline-flex; align-items: center;
+            color: var(--primary-color); font-weight: bold; text-decoration: none;
+            font-size: 1em;
+        }
+        .location-link i { margin-right: 5px; }
+        
+        .location-text {
+            display: inline-flex; align-items: center;
+            color: #666; font-weight: bold;
+            font-size: 1em;
+        }
+        .location-text i { margin-right: 5px; color: var(--primary-color); }
+
+        .desc-box {
+            background-color: #f8f9fa;
+            border: 1px dashed #cbd5e0;
+            padding: 15px;
+            border-radius: 8px;
+            font-size: 0.95em;
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .btn-block {
+            display: flex; align-items: center; justify-content: center; width: 100%;
+            background-color: var(--primary-color); color: white;
+            padding: 12px; border-radius: 8px; text-decoration: none;
+            font-weight: bold; box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            transition: background 0.2s; box-sizing: border-box;
+        }
+        .btn-block:active { transform: scale(0.98); }
+        .btn-block i { margin-right: 8px; }
+        .btn-action { background-color: var(--accent-color); color: #333; }
+
+        .media-container { margin-top: 15px; border-radius: 10px; overflow: hidden; }
+        .card-img {
+            width: 100%; height: auto; display: block; background-color: #eee;
+            cursor: pointer; transition: transform 0.2s;
+        }
+        .card-img:active { transform: scale(0.98); }
+
+        .slider-container {
+            display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+            gap: 10px; padding-bottom: 10px;
+        }
+        .slider-item { flex: 0 0 85%; scroll-snap-align: center; }
+        .slider-item img {
+            width: 100%; border-radius: 10px; height: 350px;
+            object-fit: cover; object-position: center; cursor: pointer;
+        }
+
+        .equipment-layout { display: flex; flex-direction: column; gap: 15px; }
+        .equipment-text { flex: 1; width: 100%; }
+        .equipment-img {
+            width: 100%; max-width: 280px; height: auto;
+            border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            object-fit: cover; margin: 0 auto; display: block; cursor: pointer;
+        }
+        @media (min-width: 768px) {
+            .equipment-layout { flex-direction: row; align-items: center; text-align: left; }
+            .equipment-img { width: 180px; margin: 0 0 0 15px; }
+        }
+
+        .video-header {
+            background-color: #333; color: #fff; padding: 10px 15px;
+            border-radius: 10px 10px 0 0; font-weight: bold;
+            display: flex; align-items: center; margin-top: 5px;
+        }
+        .video-header i { color: var(--accent-color); margin-right: 8px; }
+        .card-video { width: 100%; max-width: 100%; height: auto; display: block; background-color: #000; border-radius: 0 0 10px 10px; }
+        @media (min-width: 768px) {
+            .card-video { max-width: 400px; margin: 0 auto; }
+            .video-header { max-width: 400px; margin: 5px auto 0; }
+        }
+
+        .video-caption-highlight {
+            background-color: #e3f2fd; color: #0060a9;
+            padding: 12px; border-radius: 8px; margin-top: 20px;
+            font-weight: bold;
+        }
+
+        .xiaodu-caption {
+            background: linear-gradient(to right, #2c3e50, #4ca1af);
+            color: white; padding: 15px; border-radius: 8px;
+            margin-top: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+        .xiaodu-title { font-size: 1.2em; font-weight: bold; margin-bottom: 8px; color: #ffeb3b; text-align: center; }
+
+        .other-info-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .mystery-card {
+            background: white; border-radius: 16px; padding: 30px;
+            text-align: center; position: relative; overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+        }
+        .mystery-content { filter: blur(6px); opacity: 0.5; user-select: none; }
+        .mystery-overlay {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            background: rgba(255,255,255,0.9); padding: 10px 20px;
+            border-radius: 30px; box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            display: flex; align-items: center; gap: 8px; z-index: 2;
+            white-space: nowrap;
+        }
+        .mystery-text { font-weight: bold; color: var(--primary-color); font-size: 1em; }
+
+        /* 行李清單樣式 */
+        .checklist-list {
+            list-style: none; padding: 0; margin: 0;
+        }
+        .checklist-item {
+            background: white;
+            margin-bottom: 15px;
+            padding: 15px 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            display: flex;
+            align-items: center;
+            /* 修改處：將左側線條顏色改為 primary-color (藍色)，與 Day1/2/3 一致 */
+            border-left: 5px solid var(--primary-color);
+        }
+        .checklist-item i {
+            font-size: 1.5em;
+            color: var(--primary-color);
+            margin-right: 15px;
+            width: 30px;
+            text-align: center;
+        }
+        .checklist-text {
+            font-size: 1.1em;
+            color: #333;
+            font-weight: 500;
+        }
+        .checklist-sub {
+            display: block;
+            font-size: 0.85em;
+            color: #777;
+            font-weight: normal;
+        }
+
+        .form-section { background: white; padding: 20px; border-radius: 16px; margin-top: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); text-align: center; }
+        .form-container { position: relative; overflow: hidden; width: 100%; padding-top: 100%; }
+        .form-container iframe { position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%; border: none; }
+
+        footer { text-align: center; padding: 30px; color: #888; font-size: 0.8em; }
+
+        .lightbox {
+            display: none; position: fixed; z-index: 1000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center; align-items: center;
+        }
+        .lightbox-content {
+            max-width: 90%; max-height: 90%;
+            border-radius: 5px; box-shadow: 0 0 20px rgba(255,255,255,0.2);
+        }
+        .close-lightbox {
+            position: absolute; top: 20px; right: 30px;
+            color: white; font-size: 40px; font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 600px) {
+            .form-container { padding-top: 150%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="close-lightbox">×</span>
+        <img class="lightbox-content" id="lightbox-img">
+    </div>
+
+    <div class="hero">
+        <div class="logo-glass-panel">
+            <img src="logo.png" alt="路斯科技 LUZCOGI" class="logo-img">
+        </div>
+
+        <h1>2025 年度尾牙暨年終教育訓練</h1>
+        <p>專業精進 · 團隊凝聚 · 榮耀時刻</p>
+        
+        <div class="countdown-container" id="countdown-wrapper">
+            <div class="time-box"><span id="days" class="time-number">00</span><span class="time-label">Days</span></div>
+            <div class="time-box"><span id="hours" class="time-number">00</span><span class="time-label">Hrs</span></div>
+            <div class="time-box"><span id="minutes" class="time-number">00</span><span class="time-label">Mins</span></div>
+            <div class="time-box"><span id="seconds" class="time-number">00</span><span class="time-label">Sec</span></div>
+        </div>
+    </div>
+
+    <div class="container">
+        
+        <div class="tabs-wrapper">
+            <div class="tabs">
+                <button class="tab-btn active" onclick="openTab(event, 'day1')">Day 1 (1/22)</button>
+                <button class="tab-btn" onclick="openTab(event, 'day2')">Day 2 (1/23)</button>
+                <button class="tab-btn" onclick="openTab(event, 'day3')">Day 3 (1/24)</button>
+                <button class="tab-btn" onclick="openTab(event, 'checklist')"><i class="fas fa-suitcase-rolling"></i> 行李清單</button>
+                <button class="tab-btn" onclick="openTab(event, 'other')"><i class="fas fa-info-circle"></i> 其他資訊</button>
+            </div>
+        </div>
+
+        <div id="day1" class="content-section active">
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">11:00 - 12:00</span>
+                        <h3 class="event-title">中餐：客家風味桌菜</h3>
+                        <div class="location-row">
+                            <a href="https://maps.app.goo.gl/W69Di9t3hopAKHUk7" target="_blank" class="location-link">
+                                <i class="fas fa-map-marker-alt"></i> 夢松園庭園餐廳 (導航)
+                            </a>
+                        </div>
+                        
+                        <div class="desc-box">
+                            🌿 <strong>山林間的慢活饗宴</strong><br>
+                            招牌的客家美味、海產與山產野味，享受美好的旅行慢活時光。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">13:00 - 17:30</span>
+                        <h3 class="event-title">湯悅溫泉會館 (教育訓練)</h3>
+                        <div class="location-row">
+                            <a href="https://maps.app.goo.gl/7LoHGvWCJb3Bnz4R6" target="_blank" class="location-link">
+                                <i class="fas fa-map-marker-alt"></i> 湯悅會議室 (導航)
+                            </a>
+                        </div>
+                        
+                        <div class="media-container">
+                            <img src="meeting1.jpg?v=3" class="card-img" alt="前置會議">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-concierge-bell"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">18:00 - 19:00</span>
+                        <h3 class="event-title">晚餐：個人鍋物</h3>
+                        <div class="location-row"><i class="fas fa-utensils"></i> 湯悅溫泉會館餐廳</div>
+                        <div class="desc-box" style="border-color: var(--secondary-color); background-color: #e3f2fd;">
+                            ⚠️ <strong>重要提醒：</strong><br>
+                            請大家務必填寫 Google 表單選擇湯頭與肉品！<br>
+                            <span style="color: #c0392b; font-weight: bold; background: #fff; padding: 0 5px; border-radius: 4px; margin-top: 5px; display: inline-block;">⚠️ 請於 12/31 前填寫完成</span>
+                        </div>
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLr3xguRZqze_waXQSWjK-oNlW2J295LJz19SCBUhNGTi8ZQ/viewform?usp=dialog" target="_blank" class="btn-block btn-action">
+                            <i class="fas fa-edit"></i> 填寫調查表
+                        </a>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-hot-tub"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">19:00 ~</span>
+                        <h3 class="event-title">自由活動 / 露天風呂</h3>
+                        <div class="desc-box">
+                            <strong>♨️ 泰安溫泉 48℃ 極致玉泉</strong><br>
+                            <strong>🕒 開放時段：</strong><br>
+                            平日：08:30~12:00 / 14:30~21:00<br>
+                            假日：08:30~21:00 (全日)<br>
+                            <small>🔴 請著泳衣、泳帽進場。</small>
+                        </div>
+                        <div class="media-container">
+                            <img src="tangyue.jpg" class="card-img" alt="湯悅溫泉">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="day2" class="content-section">
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-coffee"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">07:00 - 08:30</span>
+                        <h3 class="event-title">飯店早餐</h3>
+                        <div class="location-row"><i class="fas fa-utensils"></i> 湯悅溫泉會館餐廳</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-laptop-code"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">08:30 - 12:00</span>
+                        <h3 class="event-title">湯悅溫泉會館 (教育訓練)</h3>
+                        <div class="location-row"><i class="fas fa-map-marker-alt"></i> 湯悅會議室</div>
+                        <div class="media-container">
+                            <img src="meeting2.jpg?v=3" class="card-img" alt="教育訓練">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-box-open"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">12:00 - 13:00</span>
+                        <h3 class="event-title">午餐：精緻便當</h3>
+                        <div class="location-row"><i class="fas fa-box-open"></i> 湯悅會議室</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-mountain"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">13:30 - 17:00</span>
+                        <h3 class="event-title">極限山訓挑戰</h3>
+                        <div class="location-row">
+                            <a href="https://maps.app.goo.gl/1ZpPaxXGPxcfsNbS7" target="_blank" class="location-link">
+                                <i class="fas fa-map-marker-alt"></i> 苗栗騰龍溫泉山莊 (導航)
+                            </a>
+                        </div>
+                        
+                        <div class="desc-box">內容：垂降、攀岩、走鋼索</div>
+                        
+                        <div class="media-container">
+                            <div class="slider-container">
+                                <div class="slider-item"><img src="rappelling.jpg" alt="垂降"></div>
+                                <div class="slider-item"><img src="rock_climbing.jpg" alt="攀岩"></div>
+                                <div class="slider-item"><img src="tightrope.jpg" alt="走鋼索"></div>
+                            </div>
+                            <div style="text-align: center; font-size: 0.8em; color: #999; margin-top: 5px;">
+                                (點擊圖片放大 / 左右滑動 ↔️)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-wine-glass-alt"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">18:00 - 21:00</span>
+                        <h3 class="event-title">🏆 年度尾牙晚宴</h3>
+                        <div class="location-row">
+                            <div class="location-text">
+                                <i class="fas fa-glass-cheers"></i> 湯悅宴會廳
+                            </div>
+                        </div>
+                        <div class="desc-box">
+                            🎉 盡情享用美食，期待大獎降臨！
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="day3" class="content-section">
+            <div class="timeline">
+                
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-coffee"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">07:00 - 10:00</span>
+                        <h3 class="event-title">飯店早餐</h3>
+                        <div class="location-row"><i class="fas fa-utensils"></i> 湯悅溫泉會館餐廳</div>
+                        <div class="desc-box" style="border-color: var(--accent-color); background-color: #fff8e1;">
+                            ⚠️ <strong>重要提醒：</strong><br>
+                            最晚 09:00 前要入場用餐。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-suitcase"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">10:30</span>
+                        <h3 class="event-title">退房 + 集合</h3>
+                        <div class="location-row"><i class="fas fa-map-marker-alt"></i> 湯悅大廳</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-utensils"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">11:30 - 12:30</span>
+                        <h3 class="event-title">中餐：棗莊客家料理</h3>
+                        <div class="location-row">
+                            <a href="https://maps.app.goo.gl/4GRiSoTYPmimYJTDA" target="_blank" class="location-link">
+                                <i class="fas fa-map-marker-alt"></i> 棗莊古藝庭園膳坊 (導航)
+                            </a>
+                        </div>
+                        
+                        <div class="desc-box">
+                            🏮 <strong>古物陳列與紅棗美食的結合</strong><br>
+                            棗莊邁入第18年，莫忘初衷。品嚐美食的同時，也能了解早期台灣生活情景。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-crosshairs"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">13:00 - 16:00</span>
+                        <h3 class="event-title">JEA 橋頭堡打水彈</h3>
+                        <div class="location-row">
+                            <a href="https://maps.app.goo.gl/CXdKUJDQZUwV2Th9A" target="_blank" class="location-link">
+                                <i class="fas fa-map-marker-alt"></i> JEA 橋頭堡 (導航)
+                            </a>
+                        </div>
+                        
+                        <div class="desc-box" style="border-color: var(--secondary-color); background-color: #e3f2fd;">
+                            <div class="equipment-layout">
+                                <div class="equipment-text">
+                                    🛠️ <strong>裝備小叮嚀：</strong><br>
+                                    歡迎自備愛槍參戰！但為了確保安全與公平，<strong>槍枝規格有所限制</strong>。<br>
+                                    若有興趣攜帶個人裝備，請務必先<strong>洽詢福委會</strong>確認規格喔！
+                                </div>
+                                <img src="gun.jpg" class="equipment-img" alt="槍枝參考圖">
+                            </div>
+                        </div>
+
+                        <div class="video-caption-highlight">
+                            <strong>🎬 歡樂回顧：</strong><br>
+                            大家還記得之前打鐳戰時，笑聲不斷的畫面嗎？<br>
+                            這次的水彈一樣刺激好玩，不用害怕也不用擔心，<br>
+                            讓我們一起安全地釋放壓力、盡情享受吧！💪
+                        </div>
+                        <div class="video-header"><i class="fas fa-play-circle"></i> 點擊播放回顧</div>
+                        <video controls playsinline class="card-video">
+                            <source src="laser_war.mp4" type="video/mp4">
+                        </video>
+                        
+                        <div class="xiaodu-caption">
+                            <div class="xiaodu-title">🔥 傳說，重現戰場！</div>
+                            沉睡已久的男人回來了！？<br>
+                            還記得曾經這個男人在戰場中大殺四方、橫掃千軍嗎？<br>
+                            這次... 小杜會再帶給我們怎麼樣的激情表現呢？<br>
+                            <strong>讓我們拭目以待！</strong>
+                        </div>
+                        <div class="video-header"><i class="fas fa-fire"></i> 傳說回歸</div>
+                        <video controls playsinline class="card-video">
+                            <source src="xiaodu.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-icon"><i class="fas fa-home"></i></div>
+                    <div class="timeline-content">
+                        <span class="time-tag">16:00 ~</span>
+                        <h3 class="event-title">老闆總結勉勵 暨 平安賦歸</h3>
+                        <div class="desc-box">
+                            由老闆為這三天兩夜的旅程進行總結勉勵。<br>
+                            感謝大家的熱情參與，帶著滿滿的收穫平安回家，期待明年再見！👋
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div id="checklist" class="content-section">
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">
+                <i class="fas fa-clipboard-check"></i> 行李準備清單
+            </h2>
+            <ul class="checklist-list">
+                <li class="checklist-item">
+                    <i class="fas fa-swimmer"></i>
+                    <div>
+                        <span class="checklist-text">泳衣、泳帽</span>
+                        <span class="checklist-sub">Day 1 露天風呂用</span>
+                    </div>
+                </li>
+                <li class="checklist-item">
+                    <i class="fas fa-hiking"></i>
+                    <div>
+                        <span class="checklist-text">運動鞋、長褲</span>
+                        <span class="checklist-sub">Day 2 山訓、Day 3 水彈用</span>
+                    </div>
+                </li>
+                <li class="checklist-item">
+                    <i class="fas fa-snowflake"></i>
+                    <div>
+                        <span class="checklist-text">保暖外套</span>
+                        <span class="checklist-sub">苗栗山區早晚溫差大</span>
+                    </div>
+                </li>
+                <li class="checklist-item">
+                    <i class="fas fa-pills"></i>
+                    <div>
+                        <span class="checklist-text">個人藥品</span>
+                        <span class="checklist-sub">暈車藥、常備藥等</span>
+                    </div>
+                </li>
+                <li class="checklist-item">
+                    <i class="fas fa-cookie-bite"></i>
+                    <div>
+                        <span class="checklist-text">宵夜、乾糧</span>
+                        <span class="checklist-sub">山區無宵夜，建議自備</span>
+                    </div>
+                </li>
+            </ul>
+
+            <div class="desc-box" style="margin-top: 20px; border-left: 5px solid #ffbd2e; background-color: #fff8e1;">
+                <strong>🌲 偏遠山區補給提醒：</strong><br>
+                湯悅位處深山，周邊無步行可達之商店。<br>
+                最近的 7-11 開車需 5 分鐘，且 <strong>22:00 就打烊了</strong>！<br>
+                若擔心晚上肚子餓或沒吃飽，<strong>強烈建議自備泡麵、零食</strong>。<br>
+                <small>(館內雖有販賣機，但種類不多，自備比較保險喔！)</small>
+            </div>
+        </div>
+
+        <div id="other" class="content-section">
+            <div class="other-info-grid">
+                <div class="mystery-card">
+                    <div class="mystery-overlay"><i class="fas fa-clipboard-list"></i> <span class="mystery-text">教育訓練時程</span></div>
+                    <div class="mystery-content">
+                        <h3>時程表</h3><p>內容確認中...</p><p>內容確認中...</p>
+                    </div>
+                </div>
+
+                <div class="mystery-card">
+                    <div class="mystery-overlay"><i class="fas fa-plane-departure"></i> <span class="mystery-text">國外員工旅遊</span></div>
+                    <div class="mystery-content">
+                        <h3>旅遊簡介</h3><p>目的地確認中...</p><p>日期確認中...</p>
+                    </div>
+                </div>
+
+                <div class="mystery-card">
+                    <div class="mystery-overlay"><i class="fas fa-bed"></i> <span class="mystery-text">房型分配名單</span></div>
+                    <div class="mystery-content">
+                        <h3>房型名單</h3><p>名單確認中...</p><p>名單確認中...</p>
+                    </div>
+                </div>
+
+                <div class="mystery-card">
+                    <div class="mystery-overlay"><i class="fas fa-chair"></i> <span class="mystery-text">尾牙座位表</span></div>
+                    <div class="mystery-content">
+                        <h3>座位名單</h3><p>座位安排中...</p><p>座位安排中...</p>
+                    </div>
+                </div>
+
+                <div class="mystery-card">
+                    <div class="mystery-overlay"><i class="fas fa-car"></i> <span class="mystery-text">車輛安排名單</span></div>
+                    <div class="mystery-content">
+                        <h3>車輛名單</h3><p>車輛調度中...</p><p>車輛調度中...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        Designed by 福委會 ❤️ | <span id="update-time"></span>
+    </footer>
+
+    <script>
+        function openTab(evt, tabName) {
+            var i, content, tablinks;
+            content = document.getElementsByClassName("content-section");
+            for (i = 0; i < content.length; i++) { content[i].className = content[i].className.replace(" active", ""); }
+            tablinks = document.getElementsByClassName("tab-btn");
+            for (i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active", ""); }
+            document.getElementById(tabName).className += " active";
+            evt.currentTarget.className += " active";
+            
+            // --- 優化：切換後強制捲動到 Container 頂部 (修正後邏輯) ---
+            var container = document.querySelector('.container');
+            // 取得容器距離文件最上方的距離
+            var targetPosition = container.offsetTop;
+            
+            window.scrollTo({
+                top: targetPosition, 
+                behavior: 'smooth'
+            });
+        }
+
+        // 倒數計時邏輯
+        const startDate = new Date("Jan 22, 2026 00:00:00").getTime();
+        const endDate = new Date("Jan 24, 2026 23:59:59").getTime();
+        
+        let prevDays = -1, prevHours = -1, prevMins = -1, prevSecs = -1;
+
+        const timerInterval = setInterval(function() {
+            const now = new Date().getTime();
+            
+            if (now > endDate) {
+                clearInterval(timerInterval);
+                document.getElementById("countdown-wrapper").innerHTML = "<div style='color:white; font-size:1.5em; font-weight:bold; text-shadow:0 2px 4px rgba(0,0,0,0.2); padding:10px;'>🎉 活動圓滿結束</div>";
+                return;
+            }
+
+            if (now >= startDate && now <= endDate) {
+                clearInterval(timerInterval);
+                document.getElementById("countdown-wrapper").innerHTML = "<div style='color:white; font-size:1.5em; font-weight:bold; text-shadow:0 2px 4px rgba(0,0,0,0.2); padding:10px;'>🔥 活動進行中 Enjoy the Party!</div>";
+                return;
+            }
+
+            const distance = startDate - now;
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            updateTime("days", days, prevDays);
+            updateTime("hours", hours, prevHours);
+            updateTime("minutes", minutes, prevMins);
+            updateTime("seconds", seconds, prevSecs);
+
+            prevDays = days;
+            prevHours = hours;
+            prevMins = minutes;
+            prevSecs = seconds;
+
+        }, 1000);
+
+        function updateTime(id, newVal, oldVal) {
+            const el = document.getElementById(id);
+            const formattedVal = newVal < 10 ? "0" + newVal : newVal;
+            
+            if (newVal !== oldVal) {
+                el.innerText = formattedVal;
+                el.classList.remove("flip");
+                void el.offsetWidth;
+                el.classList.add("flip");
+            }
+        }
+
+        const date = new Date(document.lastModified);
+        const year = date.getFullYear();
+        const month = (date.getMonth() + 1).toString().padStart(2, '0');
+        const day = date.getDate().toString().padStart(2, '0');
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        document.getElementById("update-time").innerText = `最後更新：${year}/${month}/${day} ${hours}:${minutes}`;
+
+        // Lightbox
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const images = document.querySelectorAll('.card-img, .equipment-img, .slider-item img');
+
+        images.forEach(img => {
+            img.addEventListener('click', function() {
+                lightbox.style.display = "flex";
+                lightboxImg.src = this.src;
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.style.display = "none";
+        }
+    </script>
+</body>
+</html>
