@@ -349,7 +349,6 @@
             box-shadow: 0 2px 5px rgba(0,0,0,0.05);
             display: flex;
             align-items: center;
-            /* 修改處：將左側線條顏色改為 primary-color (藍色)，與 Day1/2/3 一致 */
             border-left: 5px solid var(--primary-color);
         }
         .checklist-item i {
@@ -396,6 +395,156 @@
         @media (max-width: 600px) {
             .form-container { padding-top: 150%; }
         }
+
+        /* --- 教育訓練手風琴樣式 (新增) --- */
+        .edu-container {
+            max-width: 100%;
+            margin-bottom: 30px;
+        }
+        .edu-date-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin: 20px 0 10px 0;
+            font-weight: bold;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .edu-date-header i { margin-right: 10px; }
+        
+        .edu-item {
+            background: white;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            overflow: hidden;
+            border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        
+        .edu-header {
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column; /* 手機版垂直排列 */
+            position: relative;
+        }
+        .edu-header:hover { background-color: #f9fbfd; }
+        
+        /* 桌面版橫向排列 */
+        @media (min-width: 768px) {
+            .edu-header { 
+                flex-direction: row; 
+                align-items: center; 
+                justify-content: space-between;
+            }
+        }
+
+        .edu-time {
+            font-family: monospace;
+            font-weight: bold;
+            color: var(--primary-color);
+            font-size: 1.1em;
+            min-width: 120px;
+            margin-bottom: 5px;
+        }
+        @media (min-width: 768px) { .edu-time { margin-bottom: 0; } }
+
+        .edu-title-group {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .edu-topic {
+            font-weight: bold;
+            color: #333;
+            font-size: 1.05em;
+        }
+        
+        .edu-speaker {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 3px;
+        }
+        .edu-speaker span {
+            background: #eef2f7;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.85em;
+            margin-right: 5px;
+            color: #444;
+        }
+
+        .edu-icon {
+            font-size: 1.2em;
+            color: #ccc;
+            transition: transform 0.3s ease;
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        /* 手機版 icon 位置調整 */
+        @media (max-width: 767px) {
+            .edu-icon { top: 20px; } 
+        }
+
+        .edu-item.active .edu-icon {
+            transform: translateY(-50%) rotate(180deg);
+            color: var(--primary-color);
+        }
+        @media (max-width: 767px) {
+             .edu-item.active .edu-icon { transform: translateY(0) rotate(180deg); }
+        }
+        
+        .edu-item.active { border-color: var(--secondary-color); }
+
+        .edu-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+            background-color: #f8f9fa;
+            border-top: 1px solid #eee;
+        }
+        
+        .edu-detail-box {
+            padding: 20px;
+            font-size: 0.95em;
+            color: #555;
+        }
+
+        .report-structure {
+            background: white;
+            border-left: 4px solid var(--accent-color);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 0 4px 4px 0;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .report-list {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0 0 0;
+        }
+        .report-list li { margin-bottom: 5px; }
+        .report-list i { color: var(--secondary-color); margin-right: 8px; }
+        
+        .badge-tag {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.75em;
+            font-weight: bold;
+            margin-left: 8px;
+            vertical-align: middle;
+        }
+        .tag-product { background-color: #e3f2fd; color: #1565c0; }
+        .tag-key { background-color: #ffebee; color: #c62828; }
+        .tag-rest { background-color: #e8f5e9; color: #2e7d32; }
     </style>
 </head>
 <body>
@@ -744,14 +893,255 @@
         </div>
 
         <div id="other" class="content-section">
-            <div class="other-info-grid">
-                <div class="mystery-card">
-                    <div class="mystery-overlay"><i class="fas fa-clipboard-list"></i> <span class="mystery-text">教育訓練時程</span></div>
-                    <div class="mystery-content">
-                        <h3>時程表</h3><p>內容確認中...</p><p>內容確認中...</p>
+            
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">
+                <i class="fas fa-chalkboard-teacher"></i> 教育訓練議程表
+            </h2>
+            
+            <div class="edu-container">
+                
+                <div class="edu-date-header">
+                    <i class="fas fa-calendar-day"></i> Day 1 (1/22 週四)
+                </div>
+
+                <div class="edu-item" onclick="toggleEdu(this)">
+                    <div class="edu-header">
+                        <div class="edu-time">13:00~13:30</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">LIC 902 Multi 產品分享 <span class="badge-tag tag-product">產品</span></div>
+                            <div class="edu-speaker"><span>主講</span> 王試涵 資深工程師</div>
+                        </div>
+                        <i class="fas fa-chevron-down edu-icon"></i>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-detail-box">內容說明：產品技術分享與應用案例。</div>
                     </div>
                 </div>
 
+                <div class="edu-item" onclick="toggleEdu(this)">
+                    <div class="edu-header">
+                        <div class="edu-time">13:30~14:10</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">Siemens LR5xx series 產品分享 <span class="badge-tag tag-product">產品</span></div>
+                            <div class="edu-speaker"><span>主講</span> 林良諺 總監</div>
+                        </div>
+                        <i class="fas fa-chevron-down edu-icon"></i>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-detail-box">內容說明：西門子雷達液位計新系列產品技術分享。</div>
+                    </div>
+                </div>
+
+                <div class="edu-item" onclick="toggleEdu(this)">
+                    <div class="edu-header">
+                        <div class="edu-time">14:10~15:10</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">實戰淬鍊：關鍵失敗與避雷指南 <span class="badge-tag tag-key">重點</span></div>
+                            <div class="edu-speaker"><span>主講</span> 各區代表 (共7位)</div>
+                        </div>
+                        <i class="fas fa-chevron-down edu-icon"></i>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-detail-box">
+                            <p><strong>【重點】</strong> 揭露專案執行中的盲點，提供「如果重來一次」的解決方案。</p>
+                            <p><strong>⏱️ 時間：</strong>每位報告 8 分鐘</p>
+                            
+                            <div class="report-structure">
+                                <strong>📊 報告結構 (PPT 請依此架構)：</strong>
+                                <ul class="report-list">
+                                    <li><i class="fas fa-exclamation-triangle"></i> <strong>案況與危機 (30%)：</strong>發生什麼事？為何卡關？</li>
+                                    <li><i class="fas fa-tools"></i> <strong>處置過程 (30%)：</strong>嘗試了哪些手段？失敗/補救的結果？</li>
+                                    <li><i class="fas fa-lightbulb"></i> <strong>經驗傳承 (40%)：</strong>學到了什麼？給團隊的具體建議。</li>
+                                </ul>
+                            </div>
+                            
+                            <p style="margin-top:10px;"><strong>👥 名單分配 (由各部主管推派)：</strong></p>
+                            <ul style="font-size: 0.9em; color: #666;">
+                                <li><strong>台北 (3名)：</strong> 業務、行政、技術 (各1)</li>
+                                <li><strong>台中 (2名)：</strong> 業務、技術 (各1)</li>
+                                <li><strong>高雄 (2名)：</strong> 行政、技術 (各1)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="edu-header" style="cursor: default; background-color: #fcfcfc;">
+                        <div class="edu-time">15:10~15:25</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">☕ 中場休息 <span class="badge-tag tag-rest">15mins</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-item" onclick="toggleEdu(this)">
+                    <div class="edu-header">
+                        <div class="edu-time">15:25~16:00</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">初心與傳承：前輩教會我的事</div>
+                            <div class="edu-speaker"><span>主講</span> 2026 新晉人員</div>
+                        </div>
+                        <i class="fas fa-chevron-down edu-icon"></i>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-detail-box">
+                            <p><strong>【主題】</strong> 過去從前輩學習到哪些關鍵經驗？</p>
+                            <p><strong>⏱️ 時間：</strong>每位報告 7-10 分鐘</p>
+                            <p><strong>📌 重點：</strong>在於學習心得與心態轉變。(請用投影片或其他圖文輔助)</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-item" onclick="toggleEdu(this)">
+                    <div class="edu-header">
+                        <div class="edu-time">16:00~16:15</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">主管觀點：選拔與期許</div>
+                            <div class="edu-speaker"><span>主講</span> 晉升提名主管</div>
+                        </div>
+                        <i class="fas fa-chevron-down edu-icon"></i>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-detail-box">
+                            <p><strong>【重點】</strong> 提名該員的原因、看見的特質以及未來的期望。</p>
+                            <p><strong>⏱️ 時間：</strong>每位報告 5 分鐘</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-item" onclick="toggleEdu(this)">
+                    <div class="edu-header">
+                        <div class="edu-time">16:15~17:15</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">蛻變與成長：任職週年成果發表 <span class="badge-tag tag-key">重點</span></div>
+                            <div class="edu-speaker"><span>主講</span> 2025 歷屆晉升人員</div>
+                        </div>
+                        <i class="fas fa-chevron-down edu-icon"></i>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-detail-box">
+                            <p><strong>【重點】</strong> 晉升一年來的具體改變、實戰績效與經驗傳承。</p>
+                            <p><strong>⏱️ 時間：</strong>每位報告 7-10 分鐘 (請用投影片輔助)</p>
+                            
+                            <div class="report-structure" style="border-color: var(--primary-color);">
+                                <strong>👤 報告名單：</strong>
+                                <div style="margin-top: 5px; font-weight: bold; color: #333;">
+                                    陳玉萍、吳主力、何濬宇、<br>
+                                    林佳慧、杜宗錡、林昱翔
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-item" onclick="toggleEdu(this)">
+                    <div class="edu-header">
+                        <div class="edu-time">17:15~17:30</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">總結：傳承</div>
+                            <div class="edu-speaker"><span>主講</span> 徐紹銘 總經理</div>
+                        </div>
+                        <i class="fas fa-chevron-down edu-icon"></i>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-detail-box">第一天課程總結與勉勵。</div>
+                    </div>
+                </div>
+
+
+                <div class="edu-date-header" style="margin-top: 30px; background: var(--secondary-color);">
+                    <i class="fas fa-calendar-day"></i> Day 2 (1/23 週五)
+                </div>
+
+                <div class="edu-item" onclick="toggleEdu(this)">
+                    <div class="edu-header">
+                        <div class="edu-time">08:30~08:50</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">Horiba TOC Tocadero EVO 產品分享 <span class="badge-tag tag-product">產品</span></div>
+                            <div class="edu-speaker"><span>主講</span> 徐紹銘 總經理</div>
+                        </div>
+                        <i class="fas fa-chevron-down edu-icon"></i>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-detail-box">產品技術分享 (20mins)</div>
+                    </div>
+                </div>
+
+                <div class="edu-item" onclick="toggleEdu(this)">
+                    <div class="edu-header">
+                        <div class="edu-time">08:50~09:10</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">Horiba NH3 電極法 產品分享 <span class="badge-tag tag-product">產品</span></div>
+                            <div class="edu-speaker"><span>主講</span> 邱永慶 資深業務</div>
+                        </div>
+                        <i class="fas fa-chevron-down edu-icon"></i>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-detail-box">產品技術分享 (20mins)</div>
+                    </div>
+                </div>
+
+                <div class="edu-item" onclick="toggleEdu(this)">
+                    <div class="edu-header">
+                        <div class="edu-time">09:10~09:30</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">Hamilton 葡萄糖感測器 產品分享 <span class="badge-tag tag-product">產品</span></div>
+                            <div class="edu-speaker"><span>主講</span> 董昆祈 副理</div>
+                        </div>
+                        <i class="fas fa-chevron-down edu-icon"></i>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-detail-box">產品技術分享 (20mins)</div>
+                    </div>
+                </div>
+
+                <div class="edu-item" onclick="toggleEdu(this)">
+                    <div class="edu-header">
+                        <div class="edu-time">09:30~09:50</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">Nivus NivuLink Radar 水位計 產品分享 <span class="badge-tag tag-product">產品</span></div>
+                            <div class="edu-speaker"><span>主講</span> 徐路亞 產品經理</div>
+                        </div>
+                        <i class="fas fa-chevron-down edu-icon"></i>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-detail-box">產品技術分享 (20mins)</div>
+                    </div>
+                </div>
+
+                <div class="edu-item">
+                    <div class="edu-header" style="cursor: default; background-color: #fcfcfc;">
+                        <div class="edu-time">09:50~10:00</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">小休息 / 分部門入座 <span class="badge-tag tag-rest">10mins</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edu-item" onclick="toggleEdu(this)">
+                    <div class="edu-header">
+                        <div class="edu-time">10:00~12:00</div>
+                        <div class="edu-title-group">
+                            <div class="edu-topic">部門會議</div>
+                            <div class="edu-speaker"><span>參與</span> 各部門同仁</div>
+                        </div>
+                        <i class="fas fa-chevron-down edu-icon"></i>
+                    </div>
+                    <div class="edu-content">
+                        <div class="edu-detail-box">
+                            <p><strong>⚠️ 注意事項：</strong></p>
+                            主管請在 <strong>1/12 前</strong>公布討論主題至群組。
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <h3 style="margin-top: 40px; margin-bottom: 20px; color: #666; font-size: 1.1em; border-left: 4px solid #ccc; padding-left: 10px;">
+                即將公開資訊
+            </h3>
+            
+            <div class="other-info-grid">
                 <div class="mystery-card">
                     <div class="mystery-overlay"><i class="fas fa-plane-departure"></i> <span class="mystery-text">國外員工旅遊</span></div>
                     <div class="mystery-content">
@@ -780,6 +1170,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
 
     </div>
@@ -882,6 +1273,20 @@
 
         function closeLightbox() {
             lightbox.style.display = "none";
+        }
+
+        // 教育訓練手風琴切換功能
+        function toggleEdu(element) {
+            // 切換 active class
+            element.classList.toggle("active");
+            
+            // 控制內容展開高度
+            var content = element.querySelector(".edu-content");
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
         }
     </script>
 </body>
