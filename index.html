@@ -31,9 +31,7 @@
             line-height: 1.6;
             font-size: 16px;
             -webkit-font-smoothing: antialiased;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
+            /* 修正：移除 flex 與 min-height，消除強制空白 */
         }
 
         /* --- Hero 區域 --- */
@@ -46,7 +44,6 @@
             border-bottom-right-radius: 30px;
             position: relative;
             box-shadow: 0 4px 20px rgba(0, 96, 169, 0.3);
-            flex-shrink: 0;
         }
 
         .logo-glass-panel {
@@ -100,12 +97,12 @@
 
         .container {
             max-width: 800px;
-            margin: -40px auto 40px;
+            /* 修正：減少底部 margin，從 40px 改為 10px */
+            margin: -40px auto 10px; 
             padding: 0 20px;
             position: relative;
             z-index: 5;
             width: 100%;
-            flex: 1; /* 讓內容撐開高度，使 footer 沉底 */
         }
 
         /* --- 分頁按鈕 (Sticky) --- */
@@ -417,19 +414,17 @@
         
         .coming-soon-sub { display: block; margin-top: 10px; color: #999; font-size: 0.9em; }
 
-        /* Footer 優化 (修正靠左問題) */
+        /* Footer 優化：修正空白與對齊 */
         footer { 
             text-align: center; 
-            padding: 30px; 
+            padding: 20px; 
             color: #888; 
             font-size: 0.8em; 
-            margin-top: 40px; 
-            width: 100%; /* 強制寬度 100% */
-            display: flex; /* 使用 Flexbox 強制置中 */
-            justify-content: center; 
-            align-items: center;
-            flex-direction: column; /* 垂直排列 */
-            flex-shrink: 0;
+            /* 修正：大幅減少上方 margin，只留一點緩衝 */
+            margin-top: 10px; 
+            width: 100%; 
+            position: relative;
+            z-index: 10;
         }
 
         /* RWD 調整 */
