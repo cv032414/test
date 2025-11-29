@@ -150,10 +150,10 @@
             border-bottom: 1px solid rgba(0,0,0,0.05);
             scrollbar-width: none;
             -ms-overflow-style: none;
-            cursor: grab; /* 提示可以抓取 */
+            cursor: grab;
         }
         .tabs-wrapper:active {
-            cursor: grabbing; /* 抓取時的游標 */
+            cursor: grabbing;
         }
         .tabs-wrapper::-webkit-scrollbar {
             display: none;
@@ -172,7 +172,7 @@
             .tabs {
                 display: flex;
                 width: 100%;
-                justify-content: flex-start; /* 靠左對齊 */
+                justify-content: flex-start;
                 padding: 0;
             }
         }
@@ -400,7 +400,7 @@
             .form-container { padding-top: 150%; }
         }
 
-        /* --- 教育訓練手風琴樣式 (新增) --- */
+        /* --- 教育訓練手風琴樣式 --- */
         .edu-container {
             max-width: 100%;
             margin-bottom: 30px;
@@ -415,9 +415,9 @@
             font-size: 1.1em;
             display: flex;
             align-items: center;
-            justify-content: space-between; /* 讓箭頭靠右 */
+            justify-content: space-between;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            cursor: pointer; /* 讓它可以點擊 */
+            cursor: pointer;
         }
         .edu-date-header i { margin-right: 10px; }
         .edu-date-header .chevron-icon { transition: transform 0.3s ease; margin-right: 0; }
@@ -443,12 +443,11 @@
             padding: 15px 20px;
             cursor: pointer;
             display: flex;
-            flex-direction: column; /* 手機版垂直排列 */
+            flex-direction: column;
             position: relative;
         }
         .edu-header:hover { background-color: #f9fbfd; }
         
-        /* 桌面版橫向排列 */
         @media (min-width: 768px) {
             .edu-header { 
                 flex-direction: row; 
@@ -502,7 +501,6 @@
             top: 50%;
             transform: translateY(-50%);
         }
-        /* 手機版 icon 位置調整 */
         @media (max-width: 767px) {
             .edu-icon { top: 20px; } 
         }
@@ -565,7 +563,7 @@
 
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="close-lightbox">×</span>
-        <img class="lightbox-content" id="lightbox-img">
+        <img class="lightbox-content" id="lightbox-img" alt="放大預覽">
     </div>
 
     <div class="hero">
@@ -592,7 +590,7 @@
                 <button class="tab-btn" onclick="openTab(event, 'day2')">Day 2 (1/23)</button>
                 <button class="tab-btn" onclick="openTab(event, 'day3')">Day 3 (1/24)</button>
                 <button class="tab-btn" onclick="openTab(event, 'edu-schedule')">教育訓練時程表</button>
-                <button class="tab-btn" onclick="openTab(event, 'weather')"><i class="fas fa-cloud-sun"></i> 天氣預報</button>
+                <!-- 天氣預報按鈕已移除 -->
                 <button class="tab-btn" onclick="openTab(event, 'checklist')"><i class="fas fa-suitcase-rolling"></i> 行李清單</button>
                 <button class="tab-btn" onclick="openTab(event, 'other')"><i class="fas fa-info-circle"></i> 其他資訊</button>
                 <button class="tab-btn" onclick="openTab(event, 'travel')"><i class="fas fa-plane"></i> 國外員工旅遊</button>
@@ -608,7 +606,7 @@
                         <span class="time-tag">11:00 - 12:00</span>
                         <h3 class="event-title">中餐：客家風味桌菜</h3>
                         <div class="location-row">
-                            <a href="https://maps.app.goo.gl/W69Di9t3hopAKHUk7" target="_blank" class="location-link">
+                            <a href="https://maps.app.goo.gl/W69Di9t3hopAKHUk7" target="_blank" rel="noopener noreferrer" class="location-link">
                                 <i class="fas fa-map-marker-alt"></i> 夢松園庭園餐廳 (導航)
                             </a>
                         </div>
@@ -626,7 +624,7 @@
                         <span class="time-tag">13:00 - 17:30</span>
                         <h3 class="event-title">湯悅溫泉會館 (教育訓練)</h3>
                         <div class="location-row">
-                            <a href="https://maps.app.goo.gl/7LoHGvWCJb3Bnz4R6" target="_blank" class="location-link">
+                            <a href="https://maps.app.goo.gl/7LoHGvWCJb3Bnz4R6" target="_blank" rel="noopener noreferrer" class="location-link">
                                 <i class="fas fa-map-marker-alt"></i> 湯悅會議室 (導航)
                             </a>
                         </div>
@@ -648,7 +646,7 @@
                             請大家務必填寫 Google 表單選擇湯頭與肉品！<br>
                             <span style="color: #c0392b; font-weight: bold; background: #fff; padding: 0 5px; border-radius: 4px; margin-top: 5px; display: inline-block;">⚠️ 請於 12/31 前填寫完成</span>
                         </div>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLr3xguRZqze_waXQSWjK-oNlW2J295LJz19SCBUhNGTi8ZQ/viewform?usp=dialog" target="_blank" class="btn-block btn-action">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLr3xguRZqze_waXQSWjK-oNlW2J295LJz19SCBUhNGTi8ZQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="btn-block btn-action">
                             <i class="fas fa-edit"></i> 填寫調查表
                         </a>
                     </div>
@@ -714,7 +712,7 @@
                         <span class="time-tag">13:30 - 17:00</span>
                         <h3 class="event-title">極限山訓挑戰</h3>
                         <div class="location-row">
-                            <a href="https://maps.app.goo.gl/1ZpPaxXGPxcfsNbS7" target="_blank" class="location-link">
+                            <a href="https://maps.app.goo.gl/1ZpPaxXGPxcfsNbS7" target="_blank" rel="noopener noreferrer" class="location-link">
                                 <i class="fas fa-map-marker-alt"></i> 苗栗騰龍溫泉山莊 (導航)
                             </a>
                         </div>
@@ -784,7 +782,7 @@
                         <span class="time-tag">11:30 - 12:30</span>
                         <h3 class="event-title">中餐：棗莊客家料理</h3>
                         <div class="location-row">
-                            <a href="https://maps.app.goo.gl/4GRiSoTYPmimYJTDA" target="_blank" class="location-link">
+                            <a href="https://maps.app.goo.gl/4GRiSoTYPmimYJTDA" target="_blank" rel="noopener noreferrer" class="location-link">
                                 <i class="fas fa-map-marker-alt"></i> 棗莊古藝庭園膳坊 (導航)
                             </a>
                         </div>
@@ -802,7 +800,7 @@
                         <span class="time-tag">13:00 - 16:00</span>
                         <h3 class="event-title">JEA 橋頭堡打水彈</h3>
                         <div class="location-row">
-                            <a href="https://maps.app.goo.gl/CXdKUJDQZUwV2Th9A" target="_blank" class="location-link">
+                            <a href="https://maps.app.goo.gl/CXdKUJDQZUwV2Th9A" target="_blank" rel="noopener noreferrer" class="location-link">
                                 <i class="fas fa-map-marker-alt"></i> JEA 橋頭堡 (導航)
                             </a>
                         </div>
@@ -1108,27 +1106,7 @@
 
         </div>
 
-        <div id="weather" class="content-section">
-            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">
-                <i class="fas fa-cloud-sun"></i> 活動地點天氣預報
-            </h2>
-            
-            <div style="margin-bottom: 30px;">
-                <h3 style="color: #555; border-left: 4px solid var(--accent-color); padding-left: 10px;">
-                    Day 1 & 2：湯悅溫泉會館 (苗栗泰安)
-                </h3>
-                <div id="weather-box-1">
-                    </div>
-            </div>
-
-            <div style="margin-bottom: 30px;">
-                <h3 style="color: #555; border-left: 4px solid var(--accent-color); padding-left: 10px;">
-                    Day 3：JEA 橋頭堡 (行程地點)
-                </h3>
-                <div id="weather-box-2">
-                    </div>
-            </div>
-        </div>
+        <!-- Weather Section Removed -->
 
         <div id="checklist" class="content-section">
             <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">
@@ -1261,54 +1239,40 @@
 
     <script>
         function openTab(evt, tabName) {
-            var i, content, tablinks;
-            content = document.getElementsByClassName("content-section");
-            for (i = 0; i < content.length; i++) { content[i].className = content[i].className.replace(" active", ""); }
-            tablinks = document.getElementsByClassName("tab-btn");
-            for (i = 0; i < tablinks.length; i++) { tablinks[i].className = tablinks[i].className.replace(" active", ""); }
-            document.getElementById(tabName).className += " active";
-            evt.currentTarget.className += " active";
+            // 1. 隱藏所有內容
+            var contents = document.getElementsByClassName("content-section");
+            for (var i = 0; i < contents.length; i++) {
+                contents[i].classList.remove("active");
+            }
             
-            // --- 優化：切換後強制捲動到 Container 頂部 ---
+            // 2. 移除所有按鈕的 active 狀態
+            var tablinks = document.getElementsByClassName("tab-btn");
+            for (var i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            
+            // 3. 顯示目標內容並啟用按鈕
+            var targetContent = document.getElementById(tabName);
+            if(targetContent) {
+                targetContent.classList.add("active");
+            }
+            evt.currentTarget.classList.add("active");
+            
+            // 4. 滑順捲動到頂部 (增加判斷，避免元素不存在報錯)
             var container = document.querySelector('.container');
-            var targetPosition = container.offsetTop;
-            window.scrollTo({
-                top: targetPosition, 
-                behavior: 'smooth'
-            });
-
-            // --- 終極修正：強制每次點擊時重新寫入 HTML 與 執行 Script ---
-            if (tabName === 'weather') {
-                // 1. 定義天氣卡片的 HTML (包含地點設定)
-                var widgetCode1 = '<a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d37120d96/tai-an-township/" data-label_1="苗栗縣泰安鄉" data-label_2="湯悅溫泉會館" data-theme="original" >苗栗縣泰安鄉 湯悅溫泉會館</a>';
-                var widgetCode2 = '<a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d61120d79/houlong-township/" data-label_1="苗栗縣後龍鎮" data-label_2="JEA 橋頭堡" data-theme="original" >苗栗縣後龍鎮 JEA 橋頭堡</a>';
-
-                // 2. 取得容器
-                var box1 = document.getElementById('weather-box-1');
-                var box2 = document.getElementById('weather-box-2');
-
-                // 3. 重置容器內容 (這一步非常重要，確保是乾淨的 <a> 標籤，而不是已經變形的 iframe)
-                box1.innerHTML = widgetCode1;
-                box2.innerHTML = widgetCode2;
-
-                // 4. 處理 Script
-                var id = 'weatherwidget-io-js';
-                var oldScript = document.getElementById(id);
-                
-                // 如果 script 已經存在，要先移除，這樣重新加入時才會再執行一次
-                if (oldScript) {
-                    oldScript.parentNode.removeChild(oldScript);
+            if (container) {
+                var targetPosition = container.offsetTop;
+                // 只有當卷軸位置超過容器頂部時才捲動，避免不必要的跳動
+                if (window.scrollY > targetPosition) {
+                    window.scrollTo({
+                        top: targetPosition - 60, // 稍微保留上方空間，避免被 Sticky Tabs 遮擋
+                        behavior: 'smooth'
+                    });
                 }
-
-                // 5. 建立新的 script 並加入到 head (觸發執行)
-                var js = document.createElement('script');
-                js.id = id;
-                js.src = 'https://weatherwidget.io/js/widget.min.js';
-                document.getElementsByTagName('head')[0].appendChild(js);
             }
         }
 
-        // 倒數計時邏輯
+        // 倒數計時邏輯 (目標設為 2026/01/22)
         const startDate = new Date("Jan 22, 2026 00:00:00").getTime();
         const endDate = new Date("Jan 24, 2026 23:59:59").getTime();
         
@@ -1349,12 +1313,13 @@
 
         function updateTime(id, newVal, oldVal) {
             const el = document.getElementById(id);
+            if (!el) return; // 安全檢查
             const formattedVal = newVal < 10 ? "0" + newVal : newVal;
             
             if (newVal !== oldVal) {
                 el.innerText = formattedVal;
                 el.classList.remove("flip");
-                void el.offsetWidth;
+                void el.offsetWidth; // 觸發重繪 (Reflow) 以重啟動畫
                 el.classList.add("flip");
             }
         }
@@ -1383,43 +1348,46 @@
             lightbox.style.display = "none";
         }
 
-        // 教育訓練手風琴切換功能 (課程)
+        // 教育訓練手風琴切換功能 (課程細項)
         function toggleEdu(element) {
-            // 切換 active class
             element.classList.toggle("active");
             
-            // 控制內容展開高度
             var content = element.querySelector(".edu-content");
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
             } else {
                 content.style.maxHeight = content.scrollHeight + "px";
+                
+                // --- 修正：巢狀手風琴高度自動調整 ---
+                // 當內部展開時，檢查父層 (day-content) 是否有設定高度限制
+                // 如果有，則需要增加父層的高度，否則內容會被切掉
+                var parentDayContent = element.closest('.day-content');
+                if (parentDayContent && parentDayContent.style.maxHeight) {
+                    // 將父層高度設為一個足夠大的值，或者簡單地加上內部的高度
+                    // 這裡使用更簡單的做法：直接給予一個很大的值確保顯示完整
+                    // 註：這是一個常見的 CSS transition 限制，動態計算較複雜，放大數值最穩健
+                    parentDayContent.style.maxHeight = (parentDayContent.scrollHeight + content.scrollHeight + 500) + "px";
+                }
             }
         }
 
         // 教育訓練天數手風琴切換功能 (Day 1 / Day 2 標題)
         function toggleDay(header) {
             header.classList.toggle("active");
-            
+            var icon = header.querySelector(".chevron-icon");
             var content = header.nextElementSibling;
+            
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
-                // 讓箭頭轉回來
-                var icon = header.querySelector(".chevron-icon");
                 if(icon) icon.style.transform = "rotate(0deg)";
             } else {
-                // 展開的高度設為 scrollHeight，但因為裡面有手風琴，可能高度會變
-                // 這裡設一個足夠大的值或自動適應，最簡單是設 scrollHeight 並在點擊內部時動態調整
-                // 但為了簡單，我們先給它自動展開
-                content.style.maxHeight = content.scrollHeight + 1000 + "px"; // +1000 預留內部手風琴展開的空間
-                
-                // 讓箭頭旋轉
-                var icon = header.querySelector(".chevron-icon");
+                // 設定一個較大的預留空間，以容納內部手風琴展開
+                content.style.maxHeight = (content.scrollHeight + 2000) + "px";
                 if(icon) icon.style.transform = "rotate(180deg)";
             }
         }
 
-        // --- 優化：滑鼠拖曳捲動選單 (Mouse Drag Scroll) ---
+        // 滑鼠拖曳捲動選單 (Mouse Drag Scroll)
         const slider = document.querySelector('.tabs-wrapper');
         let isDown = false;
         let startX;
