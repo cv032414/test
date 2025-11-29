@@ -457,14 +457,27 @@
         }
 
         .edu-time {
-            font-family: monospace;
+            /* 修正為與 .time-tag 一致的樣式 */
+            display: inline-block; 
+            background: #f0f2f5; 
+            color: #555;
+            padding: 4px 10px; 
+            border-radius: 20px;
+            font-size: 0.9em; 
             font-weight: bold;
-            color: var(--primary-color);
-            font-size: 1.1em;
-            min-width: 120px;
+            
+            /* 保留排版相關設定 */
+            min-width: 125px; /* 固定寬度確保對齊 */
+            text-align: center;
             margin-bottom: 5px;
+            flex-shrink: 0;
         }
-        @media (min-width: 768px) { .edu-time { margin-bottom: 0; } }
+        @media (min-width: 768px) { 
+            .edu-time { 
+                margin-bottom: 0; 
+                margin-right: 15px;
+            } 
+        }
 
         .edu-title-group {
             flex: 1;
@@ -872,7 +885,7 @@
                     <div class="day-content">
                         <div class="edu-item" onclick="toggleEdu(this)">
                             <div class="edu-header">
-                                <div class="edu-time">13:00~13:30</div>
+                                <div class="edu-time">13:00 - 13:30</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">LIC 902 Multi <span class="badge-tag tag-product">產品</span></div>
                                     <div class="edu-speaker"><span>主講</span> 王試涵 資深工程師</div>
@@ -886,7 +899,7 @@
 
                         <div class="edu-item" onclick="toggleEdu(this)">
                             <div class="edu-header">
-                                <div class="edu-time">13:30~14:10</div>
+                                <div class="edu-time">13:30 - 14:10</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">Siemens LR5xx series <span class="badge-tag tag-product">產品</span></div>
                                     <div class="edu-speaker"><span>主講</span> 林良諺 總監</div>
@@ -900,7 +913,7 @@
 
                         <div class="edu-item" onclick="toggleEdu(this)">
                             <div class="edu-header">
-                                <div class="edu-time">14:10~15:10</div>
+                                <div class="edu-time">14:10 - 15:10</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">實戰淬鍊：關鍵失敗與避雷指南</div>
                                     <div class="edu-speaker"><span>主講</span> 各區代表 (共7位)</div>
@@ -933,7 +946,7 @@
 
                         <div class="edu-item">
                             <div class="edu-header" style="cursor: default; background-color: #fcfcfc;">
-                                <div class="edu-time">15:10~15:25</div>
+                                <div class="edu-time">15:10 - 15:25</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">☕ 中場休息 <span class="badge-tag tag-rest">15mins</span></div>
                                 </div>
@@ -942,7 +955,7 @@
 
                         <div class="edu-item" onclick="toggleEdu(this)">
                             <div class="edu-header">
-                                <div class="edu-time">15:25~16:00</div>
+                                <div class="edu-time">15:25 - 16:00</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">初心與傳承：前輩教會我的事</div>
                                     <div class="edu-speaker"><span>主講</span> 2026 新晉人員</div>
@@ -960,7 +973,7 @@
 
                         <div class="edu-item" onclick="toggleEdu(this)">
                             <div class="edu-header">
-                                <div class="edu-time">16:00~16:15</div>
+                                <div class="edu-time">16:00 - 16:15</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">主管觀點：選拔與期許</div>
                                     <div class="edu-speaker"><span>主講</span> 晉升提名主管</div>
@@ -977,7 +990,7 @@
 
                         <div class="edu-item" onclick="toggleEdu(this)">
                             <div class="edu-header">
-                                <div class="edu-time">16:15~17:15</div>
+                                <div class="edu-time">16:15 - 17:15</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">蛻變與成長：任職週年成果發表</div>
                                     <div class="edu-speaker"><span>主講</span> 2025 歷屆晉升人員</div>
@@ -1002,7 +1015,7 @@
 
                         <div class="edu-item">
                             <div class="edu-header" style="cursor: default;">
-                                <div class="edu-time">17:15~17:30</div>
+                                <div class="edu-time">17:15 - 17:30</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">總結：傳承</div>
                                     <div class="edu-speaker"><span>主講</span> 徐紹銘 總經理</div>
@@ -1021,7 +1034,7 @@
                     <div class="day-content">
                         <div class="edu-item" onclick="toggleEdu(this)">
                             <div class="edu-header">
-                                <div class="edu-time">08:30~08:50</div>
+                                <div class="edu-time">08:30 - 08:50</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">Horiba TOC Tocadero EVO <span class="badge-tag tag-product">產品</span></div>
                                     <div class="edu-speaker"><span>主講</span> 徐紹銘 總經理</div>
@@ -1035,7 +1048,7 @@
 
                         <div class="edu-item" onclick="toggleEdu(this)">
                             <div class="edu-header">
-                                <div class="edu-time">08:50~09:10</div>
+                                <div class="edu-time">08:50 - 09:10</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">Horiba NH3 電極法 <span class="badge-tag tag-product">產品</span></div>
                                     <div class="edu-speaker"><span>主講</span> 邱永慶 資深業務</div>
@@ -1049,7 +1062,7 @@
 
                         <div class="edu-item" onclick="toggleEdu(this)">
                             <div class="edu-header">
-                                <div class="edu-time">09:10~09:30</div>
+                                <div class="edu-time">09:10 - 09:30</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">Hamilton 葡萄糖感測器 <span class="badge-tag tag-product">產品</span></div>
                                     <div class="edu-speaker"><span>主講</span> 董昆祈 副理</div>
@@ -1063,7 +1076,7 @@
 
                         <div class="edu-item" onclick="toggleEdu(this)">
                             <div class="edu-header">
-                                <div class="edu-time">09:30~09:50</div>
+                                <div class="edu-time">09:30 - 09:50</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">Nivus NivuLink Radar 水位計 <span class="badge-tag tag-product">產品</span></div>
                                     <div class="edu-speaker"><span>主講</span> 徐路亞 產品經理</div>
@@ -1077,7 +1090,7 @@
 
                         <div class="edu-item">
                             <div class="edu-header" style="cursor: default; background-color: #fcfcfc;">
-                                <div class="edu-time">09:50~10:00</div>
+                                <div class="edu-time">09:50 - 10:00</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">小休息 / 分部門入座 <span class="badge-tag tag-rest">10mins</span></div>
                                 </div>
@@ -1086,7 +1099,7 @@
 
                         <div class="edu-item" onclick="toggleEdu(this)">
                             <div class="edu-header">
-                                <div class="edu-time">10:00~12:00</div>
+                                <div class="edu-time">10:00 - 12:00</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">部門會議</div>
                                     <div class="edu-speaker"><span>參與</span> 各部門同仁</div>
