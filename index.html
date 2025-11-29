@@ -1126,10 +1126,6 @@
                 </h3>
                 <a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d61120d79/houlong-township/" data-label_1="苗栗縣後龍鎮" data-label_2="JEA 橋頭堡" data-theme="original" >苗栗縣後龍鎮 JEA 橋頭堡</a>
             </div>
-
-            <script>
-            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
-            </script>
         </div>
 
         <div id="checklist" class="content-section">
@@ -1271,15 +1267,28 @@
             document.getElementById(tabName).className += " active";
             evt.currentTarget.className += " active";
             
-            // --- 優化：切換後強制捲動到 Container 頂部 (修正後邏輯) ---
+            // --- 優化：切換後強制捲動到 Container 頂部 ---
             var container = document.querySelector('.container');
-            // 取得容器距離文件最上方的距離
             var targetPosition = container.offsetTop;
-            
             window.scrollTo({
                 top: targetPosition, 
                 behavior: 'smooth'
             });
+
+            // --- 修正：天氣預報延遲載入 (解決 display:none 導致無法顯示的問題) ---
+            if (tabName === 'weather') {
+                if (!document.getElementById('weatherwidget-io-js')) {
+                    (function(d,s,id){
+                        var js,fjs=d.getElementsByTagName(s)[0];
+                        if(!d.getElementById(id)){
+                            js=d.createElement(s);
+                            js.id=id;
+                            js.src='https://weatherwidget.io/js/widget.min.js';
+                            fjs.parentNode.insertBefore(js,fjs);
+                        }
+                    }(document,'script','weatherwidget-io-js'));
+                }
+            }
         }
 
         // 倒數計時邏輯
