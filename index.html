@@ -342,9 +342,157 @@
         .lightbox-content { max-width: 90%; max-height: 90%; border-radius: 5px; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
         .close-lightbox { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; }
 
-        footer { text-align: center; padding: 30px; color: #888; font-size: 0.8em; margin-top: 40px; }
+        /* --- 旅遊卡片優化樣式 (Travel Card Optimized) --- */
+        .travel-card-container {
+            display: flex;
+            justify-content: center;
+        }
+        
+        .travel-card {
+            background-color: #fff;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            overflow: hidden;
+            width: 100%;
+            max-width: 800px;
+            border: 1px solid rgba(0,0,0,0.03);
+            position: relative;
+        }
+        
+        /* 頂部裝飾條 (像機票頂部) */
+        .travel-card-top {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #004e8a 100%);
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.85em;
+            letter-spacing: 1px;
+            border-bottom: 2px dashed rgba(255,255,255,0.3);
+        }
 
-        /* RWD */
+        .travel-main-content {
+            padding: 30px 25px;
+        }
+
+        .travel-title {
+            color: var(--primary-color);
+            font-size: 1.6em;
+            margin: 0 0 20px 0;
+            font-weight: 800;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .travel-story {
+            color: #555;
+            font-size: 1.05em;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .travel-story p { margin-bottom: 15px; }
+
+        .travel-quote {
+            background-color: #f8fcfd;
+            border-left: 4px solid var(--secondary-color);
+            padding: 15px;
+            font-style: italic;
+            color: #444;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        /* 重點資訊區塊 */
+        .travel-highlights {
+            background: linear-gradient(to bottom right, #fffdf5, #fff);
+            border: 1px solid #ffeeba;
+            border-radius: 12px;
+            padding: 20px;
+            margin: 25px 0;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            position: relative;
+        }
+        
+        .highlight-item {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+        }
+
+        .highlight-icon-box {
+            background: #fff8e1;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            flex-shrink: 0;
+            box-shadow: 0 4px 10px rgba(255, 189, 46, 0.2);
+        }
+
+        .highlight-icon-box i {
+            color: #f39c12;
+            font-size: 1.4em;
+        }
+
+        .highlight-text-group h4 {
+            margin: 0 0 5px 0;
+            color: #888;
+            font-size: 0.9em;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .highlight-text-group div {
+            font-weight: bold;
+            font-size: 1.15em;
+            color: #333;
+        }
+
+        .highlight-badge {
+            display: inline-block;
+            background: #e74c3c;
+            color: white;
+            font-size: 0.75em;
+            padding: 2px 6px;
+            border-radius: 4px;
+            margin-left: 5px;
+            vertical-align: text-top;
+        }
+
+        /* 底部預告 */
+        .travel-footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 96, 169, 0.2);
+            font-size: 1.1em;
+        }
+        
+        .coming-soon-sub {
+            display: block;
+            margin-top: 10px;
+            color: #999;
+            font-size: 0.9em;
+        }
+
+        /* RWD 調整 */
         @media (min-width: 768px) {
             .hero h1 { font-size: 2.5em; }
             .logo-img { height: 75px; }
@@ -355,10 +503,35 @@
             .video-header { max-width: 400px; margin: 15px auto 0; }
             .edu-header { flex-direction: row; align-items: center; justify-content: space-between; }
             .edu-time { margin-bottom: 0; }
+            
+            /* 旅遊卡片桌面版優化 */
+            .travel-highlights {
+                grid-template-columns: 1fr 1fr; /* 變為兩欄 */
+                gap: 20px;
+                padding: 30px;
+            }
+            .highlight-item {
+                border-radius: 8px;
+                transition: background 0.3s;
+            }
+            .highlight-item:hover {
+                background-color: rgba(255,255,255,0.6);
+            }
+            .travel-title { font-size: 2em; }
         }
         @media (max-width: 767px) {
             .edu-icon { top: 20px; }
             .edu-item.active .edu-icon { transform: translateY(0) rotate(180deg); }
+            
+            /* 旅遊卡片手機版優化 */
+            .travel-highlights {
+                border-left: 4px solid #ffbd2e; /* 手機版左側加強視覺 */
+                border-right: none;
+                border-top: none;
+                border-bottom: none;
+                background: #fffbf0;
+            }
+            .highlight-item { padding: 5px 0; }
         }
     </style>
 </head>
@@ -965,44 +1138,65 @@
             </div>
         </div>
 
-        <!-- Travel -->
+        <!-- Travel (優化版) -->
         <div id="travel" class="content-section">
             <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">
                 <i class="fas fa-plane-departure"></i> 國外員工旅遊
             </h2>
             
-            <div class="other-info-grid" style="grid-template-columns: 1fr;">
-                <div style="background: white; border-radius: 16px; padding: 30px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); border: 1px solid #eee;">
-                    <h3 style="color: var(--primary-color); margin-top: 0; font-size: 1.4em;">2026 年度預告：承諾兌現，全員泰國見！</h3>
+            <div class="travel-card-container">
+                <div class="travel-card">
                     
-                    <div style="font-size: 1.05em; color: #444; line-height: 1.8; margin-bottom: 15px;">
-                        <p>還記得上一次尾牙的那個時刻嗎？<br>
-                        相信大家還有印象（如果沒有也沒關係，讓我們來幫大家喚醒記憶 🔔）。</p>
-                        <p>當時我們很榮幸當選新任福委會成員，並在台上興奮地向大家宣布了一個願景——「2026 年員工旅遊，我們去泰國！」</p>
-                        <p style="font-weight: bold; color: var(--primary-color);">現在，我們來兌現承諾了！</p>
-                        <p>沒錯，這次真的就是去泰國玩！而且，我們還帶來了一個更棒的升級消息：</p>
+                    <div class="travel-card-top">
+                        <span><i class="fas fa-ticket-alt"></i> BOARDING PASS</span>
+                        <span>LUZCOGI 2026</span>
                     </div>
 
-                    <div style="background-color: #f8f9fa; padding: 15px; border-radius: 10px; margin: 15px 0; border-left: 5px solid var(--accent-color);">
-                        <p style="margin: 5px 0; font-weight: bold; font-size: 1.1em;">
-                            <i class="fas fa-map-marker-alt" style="color: #e74c3c; margin-right: 8px;"></i>【目的地】 泰國｜曼谷．芭達雅 (Bangkok & Pattaya) 🏖️
-                        </p>
-                        <p style="margin: 5px 0; font-weight: bold; font-size: 1.1em;">
-                            <i class="fas fa-users" style="color: #f39c12; margin-right: 5px;"></i> 【出團模式】 恢復全公司合併出團 ✨
-                        </p>
-                    </div>
+                    <div class="travel-main-content">
+                        <h2 class="travel-title">承諾兌現，全員泰國見！</h2>
+                        
+                        <div class="travel-story">
+                            <p>還記得上一次尾牙的那個時刻嗎？當時我們在台上興奮地宣布了一個願景——「2026 年，我們去泰國！」</p>
+                            
+                            <div class="travel-quote">
+                                現在，我們來兌現承諾了！<br>
+                                不僅如此，這次更帶來了一個升級好消息...
+                            </div>
+                        </div>
 
-                    <div style="font-size: 1.05em; color: #444; line-height: 1.8;">
-                        <p>經過評估與爭取，為了讓大家能有更多的交流與共同回憶，公司決議於 2026 年試辦一次恢復大家期待已久的「大團體」旅遊模式！這將是自 2019 年以來，我們再次全體一同踏上旅程。</p>
-                        
-                        <p style="margin-top: 15px;">
-                            <strong>目前進度：</strong><br>
-                            我們正在規劃最棒的行程（包含陽光、沙灘、美食與舒壓體驗）。詳細日期與行程內容，預計於 <span style="background-color: #fff3cd; padding: 2px 6px; border-radius: 4px; font-weight: bold;">本次尾牙前</span> 正式公佈。
-                        </p>
-                        
-                        <p style="margin-top: 20px; font-weight: bold; color: var(--primary-color); text-align: center; font-size: 1.2em;">
-                            敬請期待，我們泰國見！
-                        </p>
+                        <!-- 重點資訊 (Icon Grid) -->
+                        <div class="travel-highlights">
+                            <div class="highlight-item">
+                                <div class="highlight-icon-box">
+                                    <i class="fas fa-map-marked-alt"></i>
+                                </div>
+                                <div class="highlight-text-group">
+                                    <h4>Destination</h4>
+                                    <div>曼谷．芭達雅 <span class="highlight-badge">HOT</span></div>
+                                    <small style="color:#888;">Bangkok & Pattaya</small>
+                                </div>
+                            </div>
+
+                            <div class="highlight-item">
+                                <div class="highlight-icon-box">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="highlight-text-group">
+                                    <h4>Mode</h4>
+                                    <div>恢復全公司合併出團</div>
+                                    <small style="color:#888;">All Employees Together ✨</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="travel-story">
+                            <p>經過評估，為了讓大家有更多交流回憶，公司決議試辦恢復「大團體」旅遊模式！這將是自 2019 年以來，我們再次全體一同踏上旅程。</p>
+                        </div>
+
+                        <div class="travel-footer">
+                            <span class="coming-soon-badge">敬請期待，我們泰國見！</span>
+                            <span class="coming-soon-sub">詳細行程將於本次尾牙前公佈</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1039,7 +1233,7 @@
             });
         }
 
-        // 倒數計時邏輯
+        // 倒數計時邏輯 (已修正時間)
         const startDate = new Date("Jan 22, 2026 11:00:00").getTime();
         const endDate = new Date("Jan 24, 2026 16:00:00").getTime();
         
@@ -1107,7 +1301,6 @@
         images.forEach(img => {
             img.addEventListener('click', function() {
                 lightbox.style.display = "flex";
-                // 稍微延遲以觸發 CSS transition
                 setTimeout(() => lightbox.classList.add('show'), 10);
                 lightboxImg.src = this.src;
             });
@@ -1137,13 +1330,11 @@
             if (content.style.maxHeight) {
                 content.style.maxHeight = null;
             } else {
-                // 設置足夠大的高度以容納內部展開的內容，或者使用較大的固定值
-                // 這裡使用 3000px 確保內部手風琴展開時不會被切掉
                 content.style.maxHeight = "3000px"; 
             }
         }
 
-        // 滑鼠拖曳捲動 Tabs 選單 (Mouse Drag Scroll)
+        // 滑鼠拖曳捲動 Tabs 選單
         const slider = document.querySelector('.tabs-wrapper');
         let isDown = false;
         let startX;
@@ -1167,7 +1358,7 @@
             if (!isDown) return;
             e.preventDefault();
             const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2; // scroll-fast
+            const walk = (x - startX) * 2; 
             slider.scrollLeft = scrollLeft - walk;
         });
     </script>
