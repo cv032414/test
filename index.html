@@ -31,6 +31,9 @@
             line-height: 1.6;
             font-size: 16px;
             -webkit-font-smoothing: antialiased;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
         }
 
         /* --- Hero 區域 --- */
@@ -43,6 +46,7 @@
             border-bottom-right-radius: 30px;
             position: relative;
             box-shadow: 0 4px 20px rgba(0, 96, 169, 0.3);
+            flex-shrink: 0;
         }
 
         .logo-glass-panel {
@@ -100,6 +104,8 @@
             padding: 0 20px;
             position: relative;
             z-index: 5;
+            width: 100%;
+            flex: 1; /* 讓內容撐開高度，使 footer 沉底 */
         }
 
         /* --- 分頁按鈕 (Sticky) --- */
@@ -342,154 +348,88 @@
         .lightbox-content { max-width: 90%; max-height: 90%; border-radius: 5px; box-shadow: 0 0 20px rgba(255,255,255,0.2); }
         .close-lightbox { position: absolute; top: 20px; right: 30px; color: white; font-size: 40px; font-weight: bold; cursor: pointer; }
 
-        /* --- 旅遊卡片優化樣式 (Travel Card Optimized) --- */
-        .travel-card-container {
-            display: flex;
-            justify-content: center;
-        }
+        /* --- 旅遊卡片優化樣式 --- */
+        .travel-card-container { display: flex; justify-content: center; }
         
         .travel-card {
-            background-color: #fff;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-            overflow: hidden;
-            width: 100%;
-            max-width: 800px;
-            border: 1px solid rgba(0,0,0,0.03);
+            background-color: #fff; border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08); overflow: hidden;
+            width: 100%; max-width: 800px; border: 1px solid rgba(0,0,0,0.03);
             position: relative;
         }
         
-        /* 頂部裝飾條 (像機票頂部) */
         .travel-card-top {
             background: linear-gradient(135deg, var(--primary-color) 0%, #004e8a 100%);
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            color: rgba(255,255,255,0.8);
-            font-size: 0.85em;
-            letter-spacing: 1px;
+            padding: 15px; display: flex; justify-content: space-between; align-items: center;
+            color: rgba(255,255,255,0.8); font-size: 0.85em; letter-spacing: 1px;
             border-bottom: 2px dashed rgba(255,255,255,0.3);
         }
 
-        .travel-main-content {
-            padding: 30px 25px;
-        }
+        .travel-main-content { padding: 30px 25px; }
 
         .travel-title {
-            color: var(--primary-color);
-            font-size: 1.6em;
-            margin: 0 0 20px 0;
-            font-weight: 800;
-            text-align: center;
-            line-height: 1.3;
+            color: var(--primary-color); font-size: 1.6em; margin: 0 0 20px 0;
+            font-weight: 800; text-align: center; line-height: 1.3;
         }
 
-        .travel-story {
-            color: #555;
-            font-size: 1.05em;
-            line-height: 1.8;
-            margin-bottom: 25px;
-        }
-        
+        .travel-story { color: #555; font-size: 1.05em; line-height: 1.8; margin-bottom: 25px; }
         .travel-story p { margin-bottom: 15px; }
 
         .travel-quote {
-            background-color: #f8fcfd;
-            border-left: 4px solid var(--secondary-color);
-            padding: 15px;
-            font-style: italic;
-            color: #444;
-            margin: 20px 0;
+            background-color: #f8fcfd; border-left: 4px solid var(--secondary-color);
+            padding: 15px; font-style: italic; color: #444; margin: 20px 0;
             border-radius: 0 8px 8px 0;
         }
 
-        /* 重點資訊區塊 */
         .travel-highlights {
             background: linear-gradient(to bottom right, #fffdf5, #fff);
-            border: 1px solid #ffeeba;
-            border-radius: 12px;
-            padding: 20px;
-            margin: 25px 0;
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 15px;
-            position: relative;
+            border: 1px solid #ffeeba; border-radius: 12px;
+            padding: 20px; margin: 25px 0;
+            display: grid; grid-template-columns: 1fr; gap: 15px; position: relative;
         }
         
-        .highlight-item {
-            display: flex;
-            align-items: flex-start;
-            padding: 10px;
-        }
+        .highlight-item { display: flex; align-items: flex-start; padding: 10px; }
 
         .highlight-icon-box {
-            background: #fff8e1;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            flex-shrink: 0;
-            box-shadow: 0 4px 10px rgba(255, 189, 46, 0.2);
+            background: #fff8e1; width: 50px; height: 50px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin-right: 15px; flex-shrink: 0; box-shadow: 0 4px 10px rgba(255, 189, 46, 0.2);
         }
+        .highlight-icon-box i { color: #f39c12; font-size: 1.4em; }
 
-        .highlight-icon-box i {
-            color: #f39c12;
-            font-size: 1.4em;
-        }
-
-        .highlight-text-group h4 {
-            margin: 0 0 5px 0;
-            color: #888;
-            font-size: 0.9em;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        .highlight-text-group div {
-            font-weight: bold;
-            font-size: 1.15em;
-            color: #333;
-        }
+        .highlight-text-group h4 { margin: 0 0 5px 0; color: #888; font-size: 0.9em; text-transform: uppercase; letter-spacing: 0.5px; }
+        .highlight-text-group div { font-weight: bold; font-size: 1.15em; color: #333; }
 
         .highlight-badge {
-            display: inline-block;
-            background: #e74c3c;
-            color: white;
-            font-size: 0.75em;
-            padding: 2px 6px;
-            border-radius: 4px;
-            margin-left: 5px;
-            vertical-align: text-top;
+            display: inline-block; background: #e74c3c; color: white;
+            font-size: 0.75em; padding: 2px 6px; border-radius: 4px;
+            margin-left: 5px; vertical-align: text-top;
         }
 
-        /* 底部預告 */
-        .travel-footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-        }
+        .travel-footer { text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; }
 
         .coming-soon-badge {
-            display: inline-block;
-            background-color: var(--primary-color);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0, 96, 169, 0.2);
+            display: inline-block; background-color: var(--primary-color);
+            color: white; padding: 8px 20px; border-radius: 30px;
+            font-weight: bold; box-shadow: 0 4px 15px rgba(0, 96, 169, 0.2);
             font-size: 1.1em;
         }
         
-        .coming-soon-sub {
-            display: block;
-            margin-top: 10px;
-            color: #999;
-            font-size: 0.9em;
+        .coming-soon-sub { display: block; margin-top: 10px; color: #999; font-size: 0.9em; }
+
+        /* Footer 優化 (修正靠左問題) */
+        footer { 
+            text-align: center; 
+            padding: 30px; 
+            color: #888; 
+            font-size: 0.8em; 
+            margin-top: 40px; 
+            width: 100%; /* 強制寬度 100% */
+            display: flex; /* 使用 Flexbox 強制置中 */
+            justify-content: center; 
+            align-items: center;
+            flex-direction: column; /* 垂直排列 */
+            flex-shrink: 0;
         }
 
         /* RWD 調整 */
@@ -504,33 +444,16 @@
             .edu-header { flex-direction: row; align-items: center; justify-content: space-between; }
             .edu-time { margin-bottom: 0; }
             
-            /* 旅遊卡片桌面版優化 */
-            .travel-highlights {
-                grid-template-columns: 1fr 1fr; /* 變為兩欄 */
-                gap: 20px;
-                padding: 30px;
-            }
-            .highlight-item {
-                border-radius: 8px;
-                transition: background 0.3s;
-            }
-            .highlight-item:hover {
-                background-color: rgba(255,255,255,0.6);
-            }
+            .travel-highlights { grid-template-columns: 1fr 1fr; gap: 20px; padding: 30px; }
+            .highlight-item { border-radius: 8px; transition: background 0.3s; }
+            .highlight-item:hover { background-color: rgba(255,255,255,0.6); }
             .travel-title { font-size: 2em; }
         }
         @media (max-width: 767px) {
             .edu-icon { top: 20px; }
             .edu-item.active .edu-icon { transform: translateY(0) rotate(180deg); }
             
-            /* 旅遊卡片手機版優化 */
-            .travel-highlights {
-                border-left: 4px solid #ffbd2e; /* 手機版左側加強視覺 */
-                border-right: none;
-                border-top: none;
-                border-bottom: none;
-                background: #fffbf0;
-            }
+            .travel-highlights { border-left: 4px solid #ffbd2e; border-right: none; border-top: none; border-bottom: none; background: #fffbf0; }
             .highlight-item { padding: 5px 0; }
         }
     </style>
