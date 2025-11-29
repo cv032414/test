@@ -1117,14 +1117,16 @@
                 <h3 style="color: #555; border-left: 4px solid var(--accent-color); padding-left: 10px;">
                     Day 1 & 2：湯悅溫泉會館 (苗栗泰安)
                 </h3>
-                <a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d37120d96/tai-an-township/" data-label_1="苗栗縣泰安鄉" data-label_2="湯悅溫泉會館" data-theme="original" >苗栗縣泰安鄉 湯悅溫泉會館</a>
+                <div id="weather-box-1">
+                    </div>
             </div>
 
             <div style="margin-bottom: 30px;">
                 <h3 style="color: #555; border-left: 4px solid var(--accent-color); padding-left: 10px;">
                     Day 3：JEA 橋頭堡 (行程地點)
                 </h3>
-                <a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d61120d79/houlong-township/" data-label_1="苗栗縣後龍鎮" data-label_2="JEA 橋頭堡" data-theme="original" >苗栗縣後龍鎮 JEA 橋頭堡</a>
+                <div id="weather-box-2">
+                    </div>
             </div>
         </div>
 
@@ -1275,19 +1277,26 @@
                 behavior: 'smooth'
             });
 
-            // --- 修正：天氣預報延遲載入 (解決 display:none 導致無法顯示的問題) ---
+            // --- 修正：強制重刷天氣預報插件 (解決 display:none 寬度為 0 的問題) ---
             if (tabName === 'weather') {
-                if (!document.getElementById('weatherwidget-io-js')) {
-                    (function(d,s,id){
-                        var js,fjs=d.getElementsByTagName(s)[0];
-                        if(!d.getElementById(id)){
-                            js=d.createElement(s);
-                            js.id=id;
-                            js.src='https://weatherwidget.io/js/widget.min.js';
-                            fjs.parentNode.insertBefore(js,fjs);
-                        }
-                    }(document,'script','weatherwidget-io-js'));
+                // 1. 強制重置 HTML 內容
+                var w1 = '<a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d37120d96/tai-an-township/" data-label_1="苗栗縣泰安鄉" data-label_2="湯悅溫泉會館" data-theme="original" >苗栗縣泰安鄉 湯悅溫泉會館</a>';
+                var w2 = '<a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d61120d79/houlong-township/" data-label_1="苗栗縣後龍鎮" data-label_2="JEA 橋頭堡" data-theme="original" >苗栗縣後龍鎮 JEA 橋頭堡</a>';
+                
+                document.getElementById('weather-box-1').innerHTML = w1;
+                document.getElementById('weather-box-2').innerHTML = w2;
+
+                // 2. 移除舊的 script (如果有的話)
+                var oldScript = document.getElementById('weatherwidget-io-js');
+                if (oldScript) {
+                    oldScript.remove();
                 }
+
+                // 3. 重新載入 script
+                var js = document.createElement('script');
+                js.id = 'weatherwidget-io-js';
+                js.src = 'https://weatherwidget.io/js/widget.min.js';
+                document.body.appendChild(js);
             }
         }
 
