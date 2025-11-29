@@ -1277,26 +1277,34 @@
                 behavior: 'smooth'
             });
 
-            // --- 修正：強制重刷天氣預報插件 (解決 display:none 寬度為 0 的問題) ---
+            // --- 終極修正：強制每次點擊時重新寫入 HTML 與 執行 Script ---
             if (tabName === 'weather') {
-                // 1. 強制重置 HTML 內容
-                var w1 = '<a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d37120d96/tai-an-township/" data-label_1="苗栗縣泰安鄉" data-label_2="湯悅溫泉會館" data-theme="original" >苗栗縣泰安鄉 湯悅溫泉會館</a>';
-                var w2 = '<a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d61120d79/houlong-township/" data-label_1="苗栗縣後龍鎮" data-label_2="JEA 橋頭堡" data-theme="original" >苗栗縣後龍鎮 JEA 橋頭堡</a>';
-                
-                document.getElementById('weather-box-1').innerHTML = w1;
-                document.getElementById('weather-box-2').innerHTML = w2;
+                // 1. 定義天氣卡片的 HTML (包含地點設定)
+                var widgetCode1 = '<a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d37120d96/tai-an-township/" data-label_1="苗栗縣泰安鄉" data-label_2="湯悅溫泉會館" data-theme="original" >苗栗縣泰安鄉 湯悅溫泉會館</a>';
+                var widgetCode2 = '<a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d61120d79/houlong-township/" data-label_1="苗栗縣後龍鎮" data-label_2="JEA 橋頭堡" data-theme="original" >苗栗縣後龍鎮 JEA 橋頭堡</a>';
 
-                // 2. 移除舊的 script (如果有的話)
-                var oldScript = document.getElementById('weatherwidget-io-js');
+                // 2. 取得容器
+                var box1 = document.getElementById('weather-box-1');
+                var box2 = document.getElementById('weather-box-2');
+
+                // 3. 重置容器內容 (這一步非常重要，確保是乾淨的 <a> 標籤，而不是已經變形的 iframe)
+                box1.innerHTML = widgetCode1;
+                box2.innerHTML = widgetCode2;
+
+                // 4. 處理 Script
+                var id = 'weatherwidget-io-js';
+                var oldScript = document.getElementById(id);
+                
+                // 如果 script 已經存在，要先移除，這樣重新加入時才會再執行一次
                 if (oldScript) {
-                    oldScript.remove();
+                    oldScript.parentNode.removeChild(oldScript);
                 }
 
-                // 3. 重新載入 script
+                // 5. 建立新的 script 並加入到 head (觸發執行)
                 var js = document.createElement('script');
-                js.id = 'weatherwidget-io-js';
+                js.id = id;
                 js.src = 'https://weatherwidget.io/js/widget.min.js';
-                document.body.appendChild(js);
+                document.getElementsByTagName('head')[0].appendChild(js);
             }
         }
 
