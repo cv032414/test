@@ -439,27 +439,31 @@
             transition: all 0.3s ease;
         }
         
-        /* 
-           修正重點：
-           flex-direction 強制設為 row (橫向)，
-           align-items 設為 center (垂直置中)，
-           移除手機版的 column 設定。
-        */
         .edu-header {
             padding: 15px 20px;
             cursor: pointer;
             display: flex;
-            flex-direction: row; /* 強制橫向 */
+            flex-direction: row; /* 強制橫向排列 */
             align-items: center; /* 垂直置中 */
             justify-content: space-between;
             position: relative;
         }
         .edu-header:hover { background-color: #f9fbfd; }
         
+        /* 針對手機版進行特別優化，減少間距 */
+        @media (max-width: 767px) {
+            .edu-header {
+                padding: 12px 10px; /* 減少左右內距，爭取更多空間 */
+            }
+        }
+
         /* 
            修正重點：
-           移除 margin-bottom，改用 margin-right 確保左右間距，
-           保持 min-width 確保時間不換行。
+           電腦版保留原本設定。
+           手機版：
+           1. 取消 min-width 限制，改用 width: auto 搭配換行。
+           2. 縮小字體與內距。
+           3. 允許時間文字換行，這樣寬度可以縮到最小，但仍保持在左側。
         */
         .edu-time {
             display: inline-block; 
@@ -469,12 +473,26 @@
             border-radius: 20px;
             font-size: 0.9em; 
             font-weight: bold;
-            
-            min-width: 125px;
             text-align: center;
-            margin-bottom: 0; /* 修正：移除下邊距 */
-            margin-right: 15px; /* 修正：增加右邊距 */
             flex-shrink: 0;
+            margin-right: 15px; /* 統一使用右邊距 */
+            
+            /* 電腦版設定 */
+            min-width: 125px; 
+            white-space: nowrap; /* 電腦版不換行 */
+        }
+
+        /* 手機版針對時間標籤的特別優化 */
+        @media (max-width: 767px) {
+            .edu-time {
+                min-width: auto;      /* 取消最小寬度限制 */
+                width: 65px;          /* 設定一個較窄的寬度 */
+                font-size: 0.85em;    /* 稍微縮小字體 */
+                padding: 4px 5px;     /* 減少內距 */
+                margin-right: 10px;   /* 減少與標題的間距 */
+                white-space: normal;  /* 允許換行 */
+                line-height: 1.2;     /* 縮小行高，讓換行後的時間比較緊湊 */
+            }
         }
 
         .edu-title-group {
@@ -482,6 +500,11 @@
             display: flex;
             flex-direction: column;
             padding-right: 25px; /* 避免文字被右側箭頭蓋住 */
+        }
+        @media (max-width: 767px) {
+            .edu-title-group {
+                padding-right: 15px; /* 手機版減少右邊預留空間 */
+            }
         }
         
         .edu-topic {
@@ -504,11 +527,7 @@
             color: #444;
         }
 
-        /* 
-           修正重點：
-           統一使用垂直置中的定位方式，
-           移除手機版 top: 20px 的特殊設定。
-        */
+        /* 箭頭樣式統一 */
         .edu-icon {
             font-size: 1.2em;
             color: #ccc;
@@ -517,6 +536,11 @@
             right: 20px;
             top: 50%;
             transform: translateY(-50%);
+        }
+        @media (max-width: 767px) {
+            .edu-icon { 
+                right: 10px; /* 手機版箭頭靠右一點 */
+            } 
         }
 
         .edu-item.active .edu-icon {
