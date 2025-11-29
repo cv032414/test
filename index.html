@@ -592,6 +592,7 @@
                 <button class="tab-btn" onclick="openTab(event, 'day2')">Day 2 (1/23)</button>
                 <button class="tab-btn" onclick="openTab(event, 'day3')">Day 3 (1/24)</button>
                 <button class="tab-btn" onclick="openTab(event, 'edu-schedule')">教育訓練時程表</button>
+                <button class="tab-btn" onclick="openTab(event, 'weather')"><i class="fas fa-cloud-sun"></i> 天氣預報</button>
                 <button class="tab-btn" onclick="openTab(event, 'checklist')"><i class="fas fa-suitcase-rolling"></i> 行李清單</button>
                 <button class="tab-btn" onclick="openTab(event, 'other')"><i class="fas fa-info-circle"></i> 其他資訊</button>
                 <button class="tab-btn" onclick="openTab(event, 'travel')"><i class="fas fa-plane"></i> 國外員工旅遊</button>
@@ -1105,6 +1106,30 @@
 
             </div>
 
+        </div>
+
+        <div id="weather" class="content-section">
+            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">
+                <i class="fas fa-cloud-sun"></i> 活動地點天氣預報
+            </h2>
+            
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #555; border-left: 4px solid var(--accent-color); padding-left: 10px;">
+                    Day 1 & 2：湯悅溫泉會館 (苗栗泰安)
+                </h3>
+                <a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d37120d96/tai-an-township/" data-label_1="苗栗縣泰安鄉" data-label_2="湯悅溫泉會館" data-theme="original" >苗栗縣泰安鄉 湯悅溫泉會館</a>
+            </div>
+
+            <div style="margin-bottom: 30px;">
+                <h3 style="color: #555; border-left: 4px solid var(--accent-color); padding-left: 10px;">
+                    Day 3：JEA 橋頭堡 (行程地點)
+                </h3>
+                <a class="weatherwidget-io" href="https://forecast7.com/zh-tw/24d61120d79/houlong-township/" data-label_1="苗栗縣後龍鎮" data-label_2="JEA 橋頭堡" data-theme="original" >苗栗縣後龍鎮 JEA 橋頭堡</a>
+            </div>
+
+            <script>
+            !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+            </script>
         </div>
 
         <div id="checklist" class="content-section">
