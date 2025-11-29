@@ -439,25 +439,29 @@
             transition: all 0.3s ease;
         }
         
+        /* 
+           修正重點：
+           flex-direction 強制設為 row (橫向)，
+           align-items 設為 center (垂直置中)，
+           移除手機版的 column 設定。
+        */
         .edu-header {
             padding: 15px 20px;
             cursor: pointer;
             display: flex;
-            flex-direction: column;
+            flex-direction: row; /* 強制橫向 */
+            align-items: center; /* 垂直置中 */
+            justify-content: space-between;
             position: relative;
         }
         .edu-header:hover { background-color: #f9fbfd; }
         
-        @media (min-width: 768px) {
-            .edu-header { 
-                flex-direction: row; 
-                align-items: center; 
-                justify-content: space-between;
-            }
-        }
-
+        /* 
+           修正重點：
+           移除 margin-bottom，改用 margin-right 確保左右間距，
+           保持 min-width 確保時間不換行。
+        */
         .edu-time {
-            /* 修正為與 .time-tag 一致的樣式 */
             display: inline-block; 
             background: #f0f2f5; 
             color: #555;
@@ -466,23 +470,18 @@
             font-size: 0.9em; 
             font-weight: bold;
             
-            /* 保留排版相關設定 */
-            min-width: 125px; /* 固定寬度確保對齊 */
+            min-width: 125px;
             text-align: center;
-            margin-bottom: 5px;
+            margin-bottom: 0; /* 修正：移除下邊距 */
+            margin-right: 15px; /* 修正：增加右邊距 */
             flex-shrink: 0;
-        }
-        @media (min-width: 768px) { 
-            .edu-time { 
-                margin-bottom: 0; 
-                margin-right: 15px;
-            } 
         }
 
         .edu-title-group {
             flex: 1;
             display: flex;
             flex-direction: column;
+            padding-right: 25px; /* 避免文字被右側箭頭蓋住 */
         }
         
         .edu-topic {
@@ -505,6 +504,11 @@
             color: #444;
         }
 
+        /* 
+           修正重點：
+           統一使用垂直置中的定位方式，
+           移除手機版 top: 20px 的特殊設定。
+        */
         .edu-icon {
             font-size: 1.2em;
             color: #ccc;
@@ -514,16 +518,10 @@
             top: 50%;
             transform: translateY(-50%);
         }
-        @media (max-width: 767px) {
-            .edu-icon { top: 20px; } 
-        }
 
         .edu-item.active .edu-icon {
             transform: translateY(-50%) rotate(180deg);
             color: var(--primary-color);
-        }
-        @media (max-width: 767px) {
-             .edu-item.active .edu-icon { transform: translateY(0) rotate(180deg); }
         }
         
         .edu-item.active { border-color: var(--secondary-color); }
