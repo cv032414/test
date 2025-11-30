@@ -429,6 +429,18 @@
             width: 100%; 
             position: relative;
             z-index: 10;
+            line-height: 1.8; /* 增加行高，手機版換行時不擁擠 */
+        }
+        
+        /* 手機版 Footer 優化：隱藏分隔線，強制換行 */
+        @media (max-width: 480px) {
+            .footer-divider {
+                display: none;
+            }
+            #update-time {
+                display: block;
+                margin-top: 2px;
+            }
         }
 
         /* RWD 調整 */
@@ -1127,7 +1139,7 @@
     </div>
 
     <footer>
-        Designed by 福委會 ❤️ | <span id="update-time"></span>
+        Designed by 福委會 ❤️ <span class="footer-divider">|</span> <span id="update-time"></span>
     </footer>
 
     <script>
@@ -1213,9 +1225,15 @@
                 }
             }
 
-            // 頁面更新時間
+            // 頁面更新時間 (包含時分)
             const date = new Date(document.lastModified);
-            document.getElementById("update-time").innerText = `最後更新：${date.getFullYear()}/${(date.getMonth()+1).toString().padStart(2,'0')}/${date.getDate().toString().padStart(2,'0')}`;
+            const year = date.getFullYear();
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const day = date.getDate().toString().padStart(2, '0');
+            const hours = date.getHours().toString().padStart(2, '0');
+            const minutes = date.getMinutes().toString().padStart(2, '0');
+            
+            document.getElementById("update-time").innerText = `最後更新：${year}/${month}/${day} ${hours}:${minutes}`;
 
             // Lightbox 圖片放大功能
             const lightbox = document.getElementById('lightbox');
