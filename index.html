@@ -431,15 +431,71 @@
             z-index: 10;
             line-height: 1.8; /* 增加行高，手機版換行時不擁擠 */
         }
+
+        /* --- Google 上傳按鈕 (新增) --- */
+        .fab-upload {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 96, 169, 0.4);
+            z-index: 900; /* 低於 Lightbox (1000) 但高於其他內容 */
+            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+            cursor: pointer;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .fab-upload:hover {
+            transform: scale(1.1);
+            background-color: #004e8a;
+            box-shadow: 0 6px 20px rgba(0, 96, 169, 0.5);
+        }
+
+        .fab-upload i {
+            font-size: 24px;
+        }
+
+        /* 按鈕旁的文字提示 */
+        .fab-tooltip {
+            position: absolute;
+            right: 70px;
+            background-color: rgba(0,0,0,0.75);
+            color: white;
+            padding: 5px 12px;
+            border-radius: 6px;
+            font-size: 13px;
+            white-space: nowrap;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            pointer-events: none;
+        }
+
+        .fab-upload:hover .fab-tooltip {
+            opacity: 1;
+            visibility: visible;
+            right: 75px; /* 微動效果 */
+        }
         
         /* 手機版 Footer 優化：隱藏分隔線，強制換行 */
         @media (max-width: 480px) {
-            .footer-divider {
-                display: none;
-            }
-            #update-time {
-                display: block;
-                margin-top: 2px;
+            .footer-divider { display: none; }
+            #update-time { display: block; margin-top: 2px; }
+            
+            /* 手機板按鈕稍微小一點，避免擋到太多內容 */
+            .fab-upload {
+                bottom: 20px;
+                right: 20px;
+                width: 55px;
+                height: 55px;
             }
         }
 
@@ -476,6 +532,11 @@
         <img class="lightbox-content" id="lightbox-img" alt="放大預覽">
     </div>
 
+    <a href="https://photos.app.goo.gl/P95AzT2a7CpuFabg7" target="_blank" class="fab-upload" title="上傳照片">
+        <i class="fas fa-camera"></i>
+        <span class="fab-tooltip">上傳活動照片</span>
+    </a>
+
     <div class="hero">
         <div class="logo-glass-panel">
             <img src="logo.png" alt="路斯科技 LUZCOGI" class="logo-img">
@@ -506,7 +567,6 @@
             </div>
         </div>
 
-        <!-- Day 1 Content -->
         <div id="day1" class="content-section active">
             <div class="timeline">
                 <div class="timeline-item">
@@ -575,7 +635,6 @@
             </div>
         </div>
 
-        <!-- Day 2 Content -->
         <div id="day2" class="content-section">
             <div class="timeline">
                 <div class="timeline-item">
@@ -642,7 +701,6 @@
             </div>
         </div>
 
-        <!-- Day 3 Content -->
         <div id="day3" class="content-section">
             <div class="timeline">
                 <div class="timeline-item">
@@ -741,14 +799,12 @@
             </div>
         </div>
 
-        <!-- Education Schedule -->
         <div id="edu-schedule" class="content-section">
             <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">
                 <i class="fas fa-chalkboard-teacher"></i> 教育訓練時程表
             </h2>
             
             <div class="edu-container">
-                <!-- Day 1 Edu -->
                 <div class="day-group">
                     <div class="edu-date-header" onclick="toggleDay(this)">
                         <div><i class="fas fa-calendar-day"></i> Day 1 (1/22 週四)</div>
@@ -896,7 +952,6 @@
                     </div> 
                 </div>
 
-                <!-- Day 2 Edu -->
                 <div class="day-group">
                     <div class="edu-date-header" style="margin-top: 20px;" onclick="toggleDay(this)">
                         <div><i class="fas fa-calendar-day"></i> Day 2 (1/23 週五)</div>
@@ -990,7 +1045,6 @@
             </div>
         </div>
 
-        <!-- Checklist -->
         <div id="checklist" class="content-section">
             <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">
                 <i class="fas fa-clipboard-check"></i> 行李準備清單
@@ -1042,7 +1096,6 @@
             </div>
         </div>
 
-        <!-- Other Info -->
         <div id="other" class="content-section">
             <h3 style="margin-top: 20px; margin-bottom: 20px; color: #666; font-size: 1.1em; border-left: 4px solid #ccc; padding-left: 10px;">
                 即將公開資訊
@@ -1072,7 +1125,6 @@
             </div>
         </div>
 
-        <!-- Travel (優化版) -->
         <div id="travel" class="content-section">
             <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">
                 <i class="fas fa-plane-departure"></i> 國外員工旅遊
@@ -1098,7 +1150,6 @@
                             </div>
                         </div>
 
-                        <!-- 重點資訊 (Icon Grid) -->
                         <div class="travel-highlights">
                             <div class="highlight-item">
                                 <div class="highlight-icon-box">
