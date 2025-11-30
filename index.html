@@ -479,10 +479,13 @@
             pointer-events: none;
         }
 
-        .fab-upload:hover .fab-tooltip {
-            opacity: 1;
-            visibility: visible;
-            right: 75px; /* 微動效果 */
+        /* 修正手機版點擊後文字沾黏問題：限制僅在支援滑鼠懸停的裝置上顯示提示文字 */
+        @media (hover: hover) {
+            .fab-upload:hover .fab-tooltip {
+                opacity: 1;
+                visibility: visible;
+                right: 75px; 
+            }
         }
         
         /* 手機版 Footer 優化：隱藏分隔線，強制換行 */
