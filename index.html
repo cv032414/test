@@ -2,6 +2,7 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2025 年度尾牙暨年終教育訓練</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -22,6 +23,10 @@
 
         * { box-sizing: border-box; }
 
+        html {
+            scroll-behavior: smooth; /* 原生平滑捲動支援 */
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Microsoft JhengHei", sans-serif;
             background-color: var(--bg-color);
@@ -31,7 +36,6 @@
             line-height: 1.6;
             font-size: 16px;
             -webkit-font-smoothing: antialiased;
-            /* 修正：移除 flex 與 min-height，消除強制空白 */
         }
 
         /* --- Hero 區域 --- */
@@ -85,6 +89,7 @@
             position: relative;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             perspective: 1000px;
+            will-change: transform; /* 優化動畫渲染 */
         }
         .time-box::after {
             content: ''; position: absolute; top: 50%; left: 0; right: 0;
@@ -97,7 +102,6 @@
 
         .container {
             max-width: 800px;
-            /* 修正：減少底部 margin，從 40px 改為 10px */
             margin: -40px auto 10px; 
             padding: 0 20px;
             position: relative;
@@ -126,7 +130,7 @@
         .tabs {
             display: inline-flex;
             gap: 10px;
-            padding: 0 5px; /* 增加一點邊距緩衝 */
+            padding: 0 5px;
             min-width: 100%;
         }
 
@@ -286,7 +290,7 @@
             display: flex; align-items: center; justify-content: space-between;
             box-shadow: 0 2px 5px rgba(0,0,0,0.1); cursor: pointer; user-select: none;
         }
-        .chevron-icon { transition: transform 0.3s ease; }
+        .chevron-icon { transition: transform 0.3s ease; will-change: transform; }
         .edu-date-header.active .chevron-icon { transform: rotate(180deg); }
         
         .day-content { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; }
@@ -310,6 +314,7 @@
         .edu-icon {
             font-size: 1.2em; color: #ccc; transition: transform 0.3s ease;
             position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+            will-change: transform;
         }
         .edu-item.active .edu-icon { transform: translateY(-50%) rotate(180deg); color: var(--primary-color); }
 
@@ -414,13 +419,12 @@
         
         .coming-soon-sub { display: block; margin-top: 10px; color: #999; font-size: 0.9em; }
 
-        /* Footer 優化：修正空白與對齊 */
+        /* Footer 優化 */
         footer { 
             text-align: center; 
             padding: 20px; 
             color: #888; 
             font-size: 0.8em; 
-            /* 修正：大幅減少上方 margin，只留一點緩衝 */
             margin-top: 10px; 
             width: 100%; 
             position: relative;
@@ -498,7 +502,7 @@
                     <div class="timeline-content">
                         <span class="time-tag">11:00 - 12:00</span>
                         <h3 class="event-title">中餐：客家風味桌菜</h3>
-                        <a href="https://maps.app.goo.gl/W69Di9t3hopAKHUk7" target="_blank" class="location-link">
+                        <a href="https://maps.app.goo.gl/W69Di9t3hopAKHUk7" target="_blank" rel="noopener noreferrer" class="location-link">
                             <i class="fas fa-map-marker-alt"></i> 夢松園庭園餐廳 (導航)
                         </a>
                         <div class="desc-box">
@@ -513,7 +517,7 @@
                     <div class="timeline-content">
                         <span class="time-tag">13:00 - 17:30</span>
                         <h3 class="event-title">湯悅溫泉會館 (教育訓練)</h3>
-                        <a href="https://maps.app.goo.gl/7LoHGvWCJb3Bnz4R6" target="_blank" class="location-link">
+                        <a href="https://maps.app.goo.gl/7LoHGvWCJb3Bnz4R6" target="_blank" rel="noopener noreferrer" class="location-link">
                             <i class="fas fa-map-marker-alt"></i> 湯悅會議室 (導航)
                         </a>
                         <div class="media-container">
@@ -533,7 +537,7 @@
                             請大家務必填寫 Google 表單選擇湯頭與肉品！<br>
                             <span class="desc-box alert-tag">⚠️ 請於 12/31 前填寫完成</span>
                         </div>
-                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLr3xguRZqze_waXQSWjK-oNlW2J295LJz19SCBUhNGTi8ZQ/viewform?usp=dialog" target="_blank" class="btn-block btn-action">
+                        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfLr3xguRZqze_waXQSWjK-oNlW2J295LJz19SCBUhNGTi8ZQ/viewform?usp=dialog" target="_blank" rel="noopener noreferrer" class="btn-block btn-action">
                             <i class="fas fa-edit"></i> 填寫調查表
                         </a>
                     </div>
@@ -597,7 +601,7 @@
                     <div class="timeline-content">
                         <span class="time-tag">13:30 - 17:00</span>
                         <h3 class="event-title">極限山訓挑戰</h3>
-                        <a href="https://maps.app.goo.gl/1ZpPaxXGPxcfsNbS7" target="_blank" class="location-link">
+                        <a href="https://maps.app.goo.gl/1ZpPaxXGPxcfsNbS7" target="_blank" rel="noopener noreferrer" class="location-link">
                             <i class="fas fa-map-marker-alt"></i> 苗栗騰龍溫泉山莊 (導航)
                         </a>
                         <div class="desc-box">內容：垂降、攀岩、走鋼索</div>
@@ -656,7 +660,7 @@
                     <div class="timeline-content">
                         <span class="time-tag">11:30 - 12:30</span>
                         <h3 class="event-title">中餐：棗莊客家料理</h3>
-                        <a href="https://maps.app.goo.gl/4GRiSoTYPmimYJTDA" target="_blank" class="location-link">
+                        <a href="https://maps.app.goo.gl/4GRiSoTYPmimYJTDA" target="_blank" rel="noopener noreferrer" class="location-link">
                             <i class="fas fa-map-marker-alt"></i> 棗莊古藝庭園膳坊 (導航)
                         </a>
                         <div class="desc-box">
@@ -671,7 +675,7 @@
                     <div class="timeline-content">
                         <span class="time-tag">13:00 - 16:00</span>
                         <h3 class="event-title">JEA 橋頭堡打水彈</h3>
-                        <a href="https://maps.app.goo.gl/CXdKUJDQZUwV2Th9A" target="_blank" class="location-link">
+                        <a href="https://maps.app.goo.gl/CXdKUJDQZUwV2Th9A" target="_blank" rel="noopener noreferrer" class="location-link">
                             <i class="fas fa-map-marker-alt"></i> JEA 橋頭堡 (導航)
                         </a>
                         
@@ -1127,157 +1131,160 @@
     </footer>
 
     <script>
-        // 切換分頁功能 (優化版)
-        function openTab(evt, tabName) {
-            // 隱藏所有內容區塊
-            const contents = document.querySelectorAll(".content-section");
-            contents.forEach(content => content.classList.remove("active"));
+        document.addEventListener('DOMContentLoaded', function() {
+            // 切換分頁功能 (優化版)
+            window.openTab = function(evt, tabName) {
+                // 隱藏所有內容區塊
+                const contents = document.querySelectorAll(".content-section");
+                contents.forEach(content => content.classList.remove("active"));
 
-            // 移除所有按鈕的 active 狀態
-            const tablinks = document.querySelectorAll(".tab-btn");
-            tablinks.forEach(btn => btn.classList.remove("active"));
+                // 移除所有按鈕的 active 狀態
+                const tablinks = document.querySelectorAll(".tab-btn");
+                tablinks.forEach(btn => btn.classList.remove("active"));
 
-            // 顯示目標區塊並啟用按鈕
-            const targetContent = document.getElementById(tabName);
-            if(targetContent) targetContent.classList.add("active");
-            evt.currentTarget.classList.add("active");
+                // 顯示目標區塊並啟用按鈕
+                const targetContent = document.getElementById(tabName);
+                if(targetContent) targetContent.classList.add("active");
+                evt.currentTarget.classList.add("active");
+                
+                // 平滑捲動至容器頂部
+                const container = document.querySelector('.container');
+                const targetPosition = container.offsetTop - 60; // 扣除 Sticky header 高度緩衝
+                window.scrollTo({
+                    top: targetPosition > 0 ? targetPosition : 0, 
+                    behavior: 'smooth'
+                });
+            }
+
+            // 倒數計時邏輯 (已修正時間格式為 ISO 標準，解決 iOS 兼容性問題)
+            const startDate = new Date("2026-01-22T11:00:00").getTime();
+            const endDate = new Date("2026-01-24T16:00:00").getTime();
             
-            // 平滑捲動至容器頂部
-            const container = document.querySelector('.container');
-            const targetPosition = container.offsetTop - 60; // 扣除 Sticky header 高度緩衝
-            window.scrollTo({
-                top: targetPosition > 0 ? targetPosition : 0, 
-                behavior: 'smooth'
+            let prevDays = -1, prevHours = -1, prevMins = -1, prevSecs = -1;
+
+            const timerInterval = setInterval(function() {
+                const now = new Date().getTime();
+                const wrapper = document.getElementById("countdown-wrapper");
+                
+                // 活動結束
+                if (now > endDate) {
+                    clearInterval(timerInterval);
+                    wrapper.innerHTML = "<div style='color:white; font-size:1.5em; font-weight:bold; text-shadow:0 2px 4px rgba(0,0,0,0.2); padding:10px;'>🎉 活動圓滿結束</div>";
+                    return;
+                }
+
+                // 活動進行中
+                if (now >= startDate && now <= endDate) {
+                    clearInterval(timerInterval);
+                    wrapper.innerHTML = "<div style='color:white; font-size:1.5em; font-weight:bold; text-shadow:0 2px 4px rgba(0,0,0,0.2); padding:10px;'>🔥 活動進行中 Enjoy the Party!</div>";
+                    return;
+                }
+
+                // 計算剩餘時間
+                const distance = startDate - now;
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                updateTime("days", days, prevDays);
+                updateTime("hours", hours, prevHours);
+                updateTime("minutes", minutes, prevMins);
+                updateTime("seconds", seconds, prevSecs);
+
+                prevDays = days;
+                prevHours = hours;
+                prevMins = minutes;
+                prevSecs = seconds;
+
+            }, 1000);
+
+            function updateTime(id, newVal, oldVal) {
+                const el = document.getElementById(id);
+                if (!el) return;
+                const formattedVal = newVal < 10 ? "0" + newVal : newVal;
+                
+                if (newVal !== oldVal) {
+                    el.innerText = formattedVal;
+                    // 重置動畫
+                    el.classList.remove("flip");
+                    void el.offsetWidth; // 觸發重繪
+                    el.classList.add("flip");
+                }
+            }
+
+            // 頁面更新時間
+            const date = new Date(document.lastModified);
+            document.getElementById("update-time").innerText = `最後更新：${date.getFullYear()}/${(date.getMonth()+1).toString().padStart(2,'0')}/${date.getDate().toString().padStart(2,'0')} ${date.getHours().toString().padStart(2,'0')}:${date.getMinutes().toString().padStart(2,'0')}`;
+
+            // Lightbox 圖片放大功能
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            const images = document.querySelectorAll('.card-img, .equipment-img, .slider-item img');
+
+            images.forEach(img => {
+                img.addEventListener('click', function() {
+                    lightbox.style.display = "flex";
+                    setTimeout(() => lightbox.classList.add('show'), 10);
+                    lightboxImg.src = this.src;
+                });
             });
-        }
 
-        // 倒數計時邏輯 (已修正時間)
-        const startDate = new Date("Jan 22, 2026 11:00:00").getTime();
-        const endDate = new Date("Jan 24, 2026 16:00:00").getTime();
-        
-        let prevDays = -1, prevHours = -1, prevMins = -1, prevSecs = -1;
-
-        const timerInterval = setInterval(function() {
-            const now = new Date().getTime();
-            const wrapper = document.getElementById("countdown-wrapper");
-            
-            // 活動結束
-            if (now > endDate) {
-                clearInterval(timerInterval);
-                wrapper.innerHTML = "<div style='color:white; font-size:1.5em; font-weight:bold; text-shadow:0 2px 4px rgba(0,0,0,0.2); padding:10px;'>🎉 活動圓滿結束</div>";
-                return;
+            window.closeLightbox = function() {
+                lightbox.classList.remove('show');
+                setTimeout(() => lightbox.style.display = "none", 300);
             }
 
-            // 活動進行中
-            if (now >= startDate && now <= endDate) {
-                clearInterval(timerInterval);
-                wrapper.innerHTML = "<div style='color:white; font-size:1.5em; font-weight:bold; text-shadow:0 2px 4px rgba(0,0,0,0.2); padding:10px;'>🔥 活動進行中 Enjoy the Party!</div>";
-                return;
+            // 教育訓練手風琴切換功能 (單一課程)
+            window.toggleEdu = function(element) {
+                element.classList.toggle("active");
+                const content = element.querySelector(".edu-content");
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                }
             }
 
-            // 計算剩餘時間
-            const distance = startDate - now;
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            updateTime("days", days, prevDays);
-            updateTime("hours", hours, prevHours);
-            updateTime("minutes", minutes, prevMins);
-            updateTime("seconds", seconds, prevSecs);
-
-            prevDays = days;
-            prevHours = hours;
-            prevMins = minutes;
-            prevSecs = seconds;
-
-        }, 1000);
-
-        function updateTime(id, newVal, oldVal) {
-            const el = document.getElementById(id);
-            const formattedVal = newVal < 10 ? "0" + newVal : newVal;
-            
-            if (newVal !== oldVal) {
-                el.innerText = formattedVal;
-                // 重置動畫
-                el.classList.remove("flip");
-                void el.offsetWidth; // 觸發重繪
-                el.classList.add("flip");
+            // 教育訓練天數切換功能 (Day Header)
+            window.toggleDay = function(header) {
+                header.classList.toggle("active");
+                const content = header.nextElementSibling;
+                
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                } else {
+                    content.style.maxHeight = "3000px"; 
+                }
             }
-        }
 
-        // 頁面更新時間
-        const date = new Date(document.lastModified);
-        document.getElementById("update-time").innerText = `最後更新：${date.getFullYear()}/${(date.getMonth()+1).toString().padStart(2,'0')}/${date.getDate().toString().padStart(2,'0')} ${date.getHours().toString().padStart(2,'0')}:${date.getMinutes().toString().padStart(2,'0')}`;
+            // 滑鼠拖曳捲動 Tabs 選單
+            const slider = document.querySelector('.tabs-wrapper');
+            let isDown = false;
+            let startX;
+            let scrollLeft;
 
-        // Lightbox 圖片放大功能
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightbox-img');
-        const images = document.querySelectorAll('.card-img, .equipment-img, .slider-item img');
-
-        images.forEach(img => {
-            img.addEventListener('click', function() {
-                lightbox.style.display = "flex";
-                setTimeout(() => lightbox.classList.add('show'), 10);
-                lightboxImg.src = this.src;
+            slider.addEventListener('mousedown', (e) => {
+                isDown = true;
+                slider.style.cursor = 'grabbing';
+                startX = e.pageX - slider.offsetLeft;
+                scrollLeft = slider.scrollLeft;
             });
-        });
-
-        function closeLightbox() {
-            lightbox.classList.remove('show');
-            setTimeout(() => lightbox.style.display = "none", 300);
-        }
-
-        // 教育訓練手風琴切換功能 (單一課程)
-        function toggleEdu(element) {
-            element.classList.toggle("active");
-            const content = element.querySelector(".edu-content");
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        }
-
-        // 教育訓練天數切換功能 (Day Header)
-        function toggleDay(header) {
-            header.classList.toggle("active");
-            const content = header.nextElementSibling;
-            
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = "3000px"; 
-            }
-        }
-
-        // 滑鼠拖曳捲動 Tabs 選單
-        const slider = document.querySelector('.tabs-wrapper');
-        let isDown = false;
-        let startX;
-        let scrollLeft;
-
-        slider.addEventListener('mousedown', (e) => {
-            isDown = true;
-            slider.style.cursor = 'grabbing';
-            startX = e.pageX - slider.offsetLeft;
-            scrollLeft = slider.scrollLeft;
-        });
-        slider.addEventListener('mouseleave', () => {
-            isDown = false;
-            slider.style.cursor = 'grab';
-        });
-        slider.addEventListener('mouseup', () => {
-            isDown = false;
-            slider.style.cursor = 'grab';
-        });
-        slider.addEventListener('mousemove', (e) => {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - slider.offsetLeft;
-            const walk = (x - startX) * 2; 
-            slider.scrollLeft = scrollLeft - walk;
+            slider.addEventListener('mouseleave', () => {
+                isDown = false;
+                slider.style.cursor = 'grab';
+            });
+            slider.addEventListener('mouseup', () => {
+                isDown = false;
+                slider.style.cursor = 'grab';
+            });
+            slider.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - slider.offsetLeft;
+                const walk = (x - startX) * 2; 
+                slider.scrollLeft = scrollLeft - walk;
+            });
         });
     </script>
 </body>
