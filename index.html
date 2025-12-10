@@ -301,6 +301,76 @@
         }
         .mystery-text { font-weight: bold; color: var(--primary-color); }
 
+        /* --- 新增/更新：其他資訊區塊樣式 --- */
+        .info-card {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 25px;
+            box-shadow: var(--box-shadow);
+            border: 1px solid #eee;
+        }
+        .info-title {
+            text-align: center;
+            color: var(--primary-color);
+            border-bottom: 2px dashed #eee;
+            padding-bottom: 15px;
+            margin-top: 0;
+            font-size: 1.4em;
+        }
+        
+        /* 尾牙座位表樣式 */
+        .tables-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 15px;
+        }
+        .table-item {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        .table-item h4 { margin: 0 0 10px 0; font-size: 1.1em; color: #333; }
+        .table-item p { margin: 0; font-size: 0.95em; line-height: 1.6; color: #555; }
+        
+        /* 車輛安排樣式 */
+        .location-header {
+            background: #f0f4f8;
+            padding: 8px 15px;
+            border-radius: 6px;
+            margin: 20px 0 10px 0;
+            color: #333;
+            border-left: 4px solid var(--primary-color);
+        }
+        .car-list { list-style: none; padding: 0; margin: 0; }
+        .car-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+            font-size: 0.95em;
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        .car-list li:last-child { border-bottom: none; }
+        
+        .car-badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 6px;
+            color: white;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-right: 8px;
+            min-width: 80px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        .car-badge.self { background-color: #e74c3c; } /* 自備車 */
+        .car-badge.company { background-color: #0060a9; } /* 公司車 */
+        .car-passengers { flex: 1; margin-left: 4px; }
+
         /* 行李清單 */
         .checklist-list { list-style: none; padding: 0; margin: 0; }
         .checklist-item {
@@ -929,7 +999,7 @@
                                 <div class="edu-time">15:25~16:00</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">初心與傳承：前輩教會我的事</div>
-                                    <div class="edu-speaker"><span>主講</span> 2026 新晉人員</div>
+                                    <div class="edu-speaker"><span>主講</span> 2026 年度晉升人員</div>
                                 </div>
                                 <i class="fas fa-chevron-down edu-icon"></i>
                             </div>
@@ -964,7 +1034,7 @@
                                 <div class="edu-time">16:15~17:15</div>
                                 <div class="edu-title-group">
                                     <div class="edu-topic">蛻變與成長：任職週年成果發表</div>
-                                    <div class="edu-speaker"><span>主講</span> 2025 歷屆晉升人員</div>
+                                    <div class="edu-speaker"><span>主講</span> 2025 年度晉升人員</div>
                                 </div>
                                 <i class="fas fa-chevron-down edu-icon"></i>
                             </div>
@@ -1089,70 +1159,13 @@
             </div>
         </div>
 
-        <div id="checklist" class="content-section">
-            <h2 style="text-align: center; color: var(--primary-color); margin-bottom: 20px;">
-                <i class="fas fa-clipboard-check"></i> 行李準備清單
-            </h2>
-            <ul class="checklist-list">
-                <li class="checklist-item">
-                    <i class="fas fa-tshirt"></i>
-                    <div>
-                        <span class="checklist-text">公司制服 (最新灰色款)</span>
-                        <span class="checklist-sub">Day 2 穿著制服 (教育訓練+山訓)</span>
-                    </div>
-                </li>
-                <li class="checklist-item">
-                    <i class="fas fa-swimmer"></i>
-                    <div>
-                        <span class="checklist-text">泳衣、泳帽</span>
-                        <span class="checklist-sub">Day 1 露天風呂用</span>
-                    </div>
-                </li>
-                <li class="checklist-item">
-                    <i class="fas fa-hiking"></i>
-                    <div>
-                        <span class="checklist-text">運動鞋、長褲</span>
-                        <span class="checklist-sub">Day 2 山訓、Day 3 水彈用</span>
-                    </div>
-                </li>
-                <li class="checklist-item">
-                    <i class="fas fa-cloud-sun-rain"></i>
-                    <div>
-                        <span class="checklist-text">保暖外套、雨具</span>
-                        <span class="checklist-sub">山區溫差大，建議攜帶雨具以備不時之需</span>
-                    </div>
-                </li>
-                <li class="checklist-item">
-                    <i class="fas fa-pills"></i>
-                    <div>
-                        <span class="checklist-text">個人藥品</span>
-                        <span class="checklist-sub">暈車藥、常備藥等</span>
-                    </div>
-                </li>
-                <li class="checklist-item">
-                    <i class="fas fa-cookie-bite"></i>
-                    <div>
-                        <span class="checklist-text">宵夜、乾糧</span>
-                        <span class="checklist-sub">山區無宵夜，建議自備</span>
-                    </div>
-                </li>
-            </ul>
-
-            <div class="desc-box warning" style="border-left: 5px solid var(--accent-color);">
-                <strong>🌲 偏遠山區補給提醒：</strong><br>
-                湯悅位處深山，周邊無步行可達之商店。<br>
-                最近的 7-11 開車需 5 分鐘，且 <strong>22:00 就打烊了</strong>！<br>
-                若擔心晚上肚子餓或沒吃飽，<strong>強烈建議自備泡麵、零食</strong>。<br>
-                <small>(館內雖有販賣機，但種類不多，自備比較保險喔！)</small>
-            </div>
-        </div>
-
         <div id="other" class="content-section">
             <h3 style="margin-top: 20px; margin-bottom: 20px; color: #666; font-size: 1.1em; border-left: 4px solid #ccc; padding-left: 10px;">
-                即將公開資訊
+                活動相關資訊
             </h3>
             
             <div class="other-info-grid">
+                <!-- 房型分配：保持 Mystery -->
                 <div class="mystery-card">
                     <div class="mystery-overlay"><i class="fas fa-bed"></i> <span class="mystery-text">房型分配名單 (待公布...)</span></div>
                     <div class="mystery-content">
@@ -1160,18 +1173,84 @@
                     </div>
                 </div>
 
-                <div class="mystery-card">
-                    <div class="mystery-overlay"><i class="fas fa-chair"></i> <span class="mystery-text">尾牙座位表 (待公布...)</span></div>
-                    <div class="mystery-content">
-                        <h3>座位名單</h3><p>座位安排中...</p><p>座位安排中...</p>
+                <!-- 尾牙座位表：正式卡片 -->
+                <div class="info-card">
+                    <h3 class="info-title"><i class="fas fa-utensils"></i> 尾牙座位表</h3>
+                    <div class="tables-grid">
+                        <div class="table-item">
+                            <h4 style="color: #c0392b;">🔴 第 1 桌</h4>
+                            <p>徐紹銘、邱斌兼、嚴怡珍、何濬宇、洪承妍<br>鍾婉意、林佳慧、徐路亞、黃金銘、林向昇</p>
+                        </div>
+                        <div class="table-item">
+                            <h4 style="color: #e67e22;">🟠 第 2 桌</h4>
+                            <p>徐紹勳、廖清賢、邱耀德、徐滋妤、黃琦倫<br>陳宇欣、黃怡真、林政樵、邱煜方、蔡忠麟</p>
+                        </div>
+                        <div class="table-item">
+                            <h4 style="color: #f1c40f;">🟡 第 3 桌</h4>
+                            <p>林良諺、王靖惠、胡蕙君、林昱翔、葉信宏<br>蔡孟憲、吳純宜、宋采恩、杜宗錡、陳佑儒</p>
+                        </div>
+                        <div class="table-item">
+                            <h4 style="color: #27ae60;">🟢 第 4 桌</h4>
+                            <p>張嘉玲、沈政宏、董昆祈、邱永慶、吳主力<br>顏竹良、王試涵、陳玉萍、李華瑩、呂健全、陳明煌</p>
+                        </div>
                     </div>
                 </div>
 
-                <div class="mystery-card">
-                    <div class="mystery-overlay"><i class="fas fa-car"></i> <span class="mystery-text">車輛安排名單 (待公布...)</span></div>
-                    <div class="mystery-content">
-                        <h3>車輛名單</h3><p>車輛調度中...</p><p>車輛調度中...</p>
-                    </div>
+                <!-- 車輛安排：正式卡片 -->
+                <div class="info-card">
+                    <h3 class="info-title"><i class="fas fa-car"></i> 車輛安排</h3>
+                    
+                    <h4 class="location-header">📍 台北出發</h4>
+                    <ul class="car-list">
+                        <li>
+                            <span class="car-badge self">Car 1 [自備車]</span> 
+                            <span class="car-passengers">徐路亞、徐紹銘、徐紹勳</span>
+                        </li>
+                        <li>
+                            <span class="car-badge self">Car 2 [自備車]</span> 
+                            <span class="car-passengers">廖清賢、呂健全、鍾婉意、邱煜方</span>
+                        </li>
+                        <li>
+                            <span class="car-badge self">Car 3 [自備車]</span> 
+                            <span class="car-passengers">邱永慶、吳純宜、陳宇欣、宋采恩</span>
+                        </li>
+                        <li>
+                            <span class="car-badge company">Car 4 [公司車]</span> 
+                            <span class="car-passengers">葉信宏、邱斌兼、林向昇、蔡忠麟</span>
+                        </li>
+                        <li>
+                            <span class="car-badge company">Car 5 [公司車]</span> 
+                            <span class="car-passengers">黃金銘、張嘉玲、陳玉萍、李華瑩</span>
+                        </li>
+                        <li>
+                            <span class="car-badge company">Car 6 [公司車]</span> 
+                            <span class="car-passengers">顏竹良、邱耀德、何濬宇</span>
+                        </li>
+                    </ul>
+
+                    <h4 class="location-header">📍 台中出發</h4>
+                    <ul class="car-list">
+                        <li>
+                            <span class="car-badge self">Car 7 [自備車]</span> 
+                            <span class="car-passengers">杜宗錡、沈政宏、林昱翔、陳明煌</span>
+                        </li>
+                        <li>
+                            <span class="car-badge self">Car 8 [自備車]</span> 
+                            <span class="car-passengers">林政樵、嚴怡珍、徐滋妤</span>
+                        </li>
+                        <li>
+                            <span class="car-badge company">Car 9 [公司車]</span> 
+                            <span class="car-passengers">陳佑儒、林良諺、黃琦倫、王靖惠</span>
+                        </li>
+                        <li>
+                            <span class="car-badge company">Car 10 [公司車]</span> 
+                            <span class="car-passengers">蔡孟憲、董昆祈、胡蕙君、洪承妍</span>
+                        </li>
+                        <li>
+                            <span class="car-badge company">Car 11 [公司車]</span> 
+                            <span class="car-passengers">黃怡真、王試涵、吳主力、林佳慧</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
