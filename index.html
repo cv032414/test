@@ -664,7 +664,6 @@
 
     <div class="container">
         
-        <!-- 修改後的分頁按鈕結構 -->
         <div class="tabs-container">
             <button class="nav-btn prev-btn" id="prevBtn" aria-label="往左捲動"><i class="fas fa-chevron-left"></i></button>
             <div class="tabs-wrapper" id="tabsWrapper">
@@ -1223,38 +1222,89 @@
             </h3>
             
             <div class="other-info-grid">
-                <!-- 房型分配：保持 Mystery -->
-                <div class="mystery-card">
-                    <div class="mystery-overlay"><i class="fas fa-bed"></i> <span class="mystery-text">房型分配名單 (待公布...)</span></div>
-                    <div class="mystery-content">
-                        <h3>房型名單</h3><p>名單確認中...</p><p>名單確認中...</p>
+                
+                <div class="info-card">
+                    <h3 class="info-title"><i class="fas fa-bed"></i> 房型分配名單</h3>
+                    
+                    <h4 style="color: #0060a9; border-left: 4px solid #0060a9; padding-left: 10px; margin: 20px 0 15px;">👦 男生宿舍</h4>
+                    <div class="tables-grid">
+                        <div class="table-item">
+                            <h4>2人房</h4>
+                            <p>徐紹銘、董昆祈</p>
+                        </div>
+                        <div class="table-item">
+                            <h4>2人房</h4>
+                            <p>徐紹勳、黃琦倫</p>
+                        </div>
+                        <div class="table-item">
+                            <h4>4人房</h4>
+                            <p>邱耀德、葉信宏<br>何濬宇、顏竹良</p>
+                        </div>
+                        <div class="table-item">
+                            <h4>4人房</h4>
+                            <p>林良諺、林昱翔<br>杜宗錡</p>
+                        </div>
+                        <div class="table-item">
+                            <h4>4人房</h4>
+                            <p>黃金銘、呂健全<br>林政樵、陳佑儒</p>
+                        </div>
+                        <div class="table-item">
+                            <h4>4人房</h4>
+                            <p>邱斌兼、林向昇<br>陳明煌、蔡忠麟</p>
+                        </div>
+                        <div class="table-item">
+                            <h4>4人房</h4>
+                            <p>徐路亞、邱永慶<br>王試涵、沈政宏</p>
+                        </div>
+                        <div class="table-item">
+                            <h4>4人房</h4>
+                            <p>廖清賢、邱煜方<br>蔡孟憲、吳主力</p>
+                        </div>
+                    </div>
+
+                    <h4 style="color: #c0392b; border-left: 4px solid #c0392b; padding-left: 10px; margin: 30px 0 15px;">👧 女生宿舍</h4>
+                    <div class="tables-grid">
+                        <div class="table-item">
+                            <h4>2人房</h4>
+                            <p>張嘉玲、胡蕙君</p>
+                        </div>
+                        <div class="table-item">
+                            <h4>4人房</h4>
+                            <p>嚴怡珍、王靖惠<br>陳玉萍、陳宇欣</p>
+                        </div>
+                        <div class="table-item">
+                            <h4>4人房</h4>
+                            <p>鍾婉意、李華瑩<br>黃怡真、徐滋妤</p>
+                        </div>
+                        <div class="table-item">
+                            <h4>4人房</h4>
+                            <p>吳純宜、洪承妍<br>林佳慧、宋采恩</p>
+                        </div>
                     </div>
                 </div>
 
-                <!-- 尾牙座位表：正式卡片 -->
                 <div class="info-card">
                     <h3 class="info-title"><i class="fas fa-utensils"></i> 尾牙座位表</h3>
                     <div class="tables-grid">
                         <div class="table-item">
                             <h4 style="color: #c0392b;">🔴 第 1 桌</h4>
-                            <p>徐紹銘、邱斌兼、嚴怡珍、何濬宇、洪承妍<br>鍾婉意、林佳慧、徐路亞、黃金銘、林向昇</p>
+                            <p>徐紹銘、邱斌兼、嚴怡珍、沈政宏<br>林向昇、吳純宜、邱永慶、鍾婉意<br>何濬宇、黃金銘、宋采恩</p>
                         </div>
                         <div class="table-item">
                             <h4 style="color: #e67e22;">🟠 第 2 桌</h4>
-                            <p>徐紹勳、廖清賢、邱耀德、徐滋妤、黃琦倫<br>陳宇欣、黃怡真、林政樵、邱煜方、蔡忠麟</p>
+                            <p>徐紹勳、廖清賢、黃琦倫、邱耀德<br>陳宇欣、徐路亞、徐滋妤、蔡忠麟<br>黃怡真、邱煜方</p>
                         </div>
                         <div class="table-item">
                             <h4 style="color: #f1c40f;">🟡 第 3 桌</h4>
-                            <p>林良諺、王靖惠、胡蕙君、林昱翔、葉信宏<br>蔡孟憲、吳純宜、宋采恩、杜宗錡、陳佑儒</p>
+                            <p>林良諺、王靖惠、葉信宏、呂健全<br>吳主力、林昱翔、杜宗錡、胡蕙君<br>洪承妍、陳佑儒</p>
                         </div>
                         <div class="table-item">
                             <h4 style="color: #27ae60;">🟢 第 4 桌</h4>
-                            <p>張嘉玲、沈政宏、董昆祈、邱永慶、吳主力<br>顏竹良、王試涵、陳玉萍、李華瑩、呂健全、陳明煌</p>
+                            <p>張嘉玲、陳玉萍、王試涵、董昆祈<br>李華瑩、顏竹良、林佳慧、蔡孟憲<br>陳明煌、林政樵</p>
                         </div>
                     </div>
                 </div>
 
-                <!-- 車輛安排：正式卡片 -->
                 <div class="info-card">
                     <h3 class="info-title"><i class="fas fa-car"></i> 車輛安排</h3>
                     
@@ -1290,11 +1340,11 @@
                     <ul class="car-list">
                         <li>
                             <span class="car-badge self">Car 7 [自備車]</span> 
-                            <span class="car-passengers">杜宗錡、沈政宏、林昱翔、陳明煌</span>
+                            <span class="car-passengers">杜宗錡、沈政宏、林昱翔</span>
                         </li>
                         <li>
                             <span class="car-badge self">Car 8 [自備車]</span> 
-                            <span class="car-passengers">林政樵、嚴怡珍、徐滋妤</span>
+                            <span class="car-passengers">林政樵、嚴怡珍、徐滋妤、陳明煌</span>
                         </li>
                         <li>
                             <span class="car-badge company">Car 9 [公司車]</span> 
